@@ -19,6 +19,23 @@ function ApiService($http, $window) {
         return $http.delete('/api/products/:'+ id);
     }
 
+    var getCategory = function() {
+        return $http.get('/api/categories', {});
+    }
+    var getCategoryByGroup = function(id) {
+        return $http.get('/api/categories/:'+ id);
+    }
+    var addCategory = function(category) {
+        return $http.post('/api/categories', category);
+    }
+    var editCategory = function(category) {
+        var id = category._id;
+        return $http.put('/api/categories/:'+id, category);
+    }
+    var deleteCategory = function(id) {
+        return $http.delete('/api/categories/:'+ id);
+    }
+
     var getpostProduct = function() {
         return $http.get('/api/postproduct', {});
     }
@@ -72,13 +89,6 @@ function ApiService($http, $window) {
         });
     }
 
-    var getPostDoYouKnow = function() {
-        return $http.get('/api/do-you-know', {
-        });
-    }
-    var addPostDoYouKnow = function(data) {
-        return $http.post('/api/do-you-know',data);
-    }
     var getNutrition = function() {
         return $http.get('/api/nutrition', {
         });
@@ -87,34 +97,7 @@ function ApiService($http, $window) {
         return $http.get('/api/nutrition-for-elder', {
         });
     }
-    var getNutritionForElderProduct = function() {
-        return $http.get('/api/nutrition-for-older/product', {
-        });
-    }
-    var getNutritionForOlder = function() {
-        return $http.get('/api/nutrition-for-older', {
-        });
-    }
-    var getNutritionForOlderProduct = function() {
-        return $http.get('/api/nutrition-for-olderProduct', {
-        });
-    }
-    var getWeightGain = function() {
-        return $http.get('/api/weight-gain', {
-        });
-    }
-    var getWeightGainProduct = function() {
-        return $http.get('/api/weight-gain/product', {
-        });
-    }
-    var getWeightLossProduct = function() {
-        return $http.get('/api/weight-loss/product', {
-        });
-    }
-    var getWeightLoss = function() {
-        return $http.get('/api/weight-loss', {
-        });
-    }
+   
 
     var listProducts = [];
     var product = {};
@@ -125,25 +108,24 @@ function ApiService($http, $window) {
         listProducts: listProducts,
         product: product,
         addProduct:addProduct,
+        addCategory: addCategory,
         defaultImage: defaultImage,
         getProduct: getProduct,
+        getCategory: getCategory,
         getproductUsers:getproductUsers,
         addProductUser:addProductUser,
-        deleteProduct:deleteProduct,
+        
         editProduct: editProduct,
+        editCategory: editCategory,
+        
+        deleteProduct:deleteProduct,
+        deleteCategory:deleteCategory,
         deleteUser:deleteUser,
         deleteProductUser:deleteProductUser,
-        getPostDoYouKnow:getPostDoYouKnow,
+        
         getNutrition:getNutrition,
         getNutritionForElder:getNutritionForElder,
-        getNutritionForOlder:getNutritionForOlder,
-        getWeightGain:getWeightGain,
-        getWeightLoss:getWeightLoss,
-        addPostDoYouKnow:addPostDoYouKnow,
-        getNutritionForOlderProduct:getNutritionForOlderProduct,
-        getWeightLossProduct:getWeightLossProduct,
-        getWeightGainProduct:getWeightGainProduct,
-        getNutritionForElderProduct:getNutritionForElderProduct,
+   
         getpostProduct:getpostProduct,
         addpostProduct:addpostProduct,
         deletepostProduct: deletepostProduct,

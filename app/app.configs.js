@@ -78,6 +78,18 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             access: false
 
         })
+        .state('admin.category', {
+            url: "/list-category",
+            views: {
+                "": {
+                    templateUrl: 'app/admin/admin-category/admin-categoryView.html',
+                    controller: 'Admin-categoryCtrl',
+                    controllerAs:'$ctrl'
+                }
+            },
+            access: false
+
+        })
         .state('admin.user', {
             url: "/list-user",
             views: {

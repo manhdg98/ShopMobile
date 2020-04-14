@@ -329,6 +329,52 @@ function DialogUtils(ModalService, $http, $timeout, apiService, shareData, $loca
             });
         });
     }
+    myDialogs.newCategory = function() {
+        function ModalController(close) {
+            window.new = this;
+            var self = this;
+        
+            self.categoryModel = shareData.getData() ? shareData.getData() : {};
+            this.addCategory = function() {
+                var onSave = undefined;
+                if (self.categoryModel._id == undefined || self.categoryModel._id == 0){
+                    onSave = apiService.addCategory;
+                }
+                else {
+                    onSave = apiService.editCategory;
+                }
+                onSave(self.categoryModel).then(function(data) {
+                        self.categoryModel = {};
+                        $.notify({
+                            icon: 'fa fa-check',
+                            message: 'Update success !!!'
+                        }, {
+                            delay: 2,
+                            timer: 200
+                        });
+                        onloadListProduct();
+                        $location.path('/admin/list-category');
+                    })
+                    .catch(function(data) {
+                        console.log(data, "addCategory")
+                    })
+            }
+
+
+        }
+
+        ModalService.showModal({
+            templateUrl: 'app/dialogs/modal-addCategory/addCategoryView.html',
+            controller: ModalController,
+            controllerAs: 'Modal'
+        }).then(function(modal) {
+            modal.element.modal();
+            modal.close.then(function(data) {
+                $('.modal-backdrop').last().remove();
+                $('body').removeClass('modal-open');
+            });
+        });
+    }
     myDialogs.newPost = function() {
         function ModalController(close) {
             window.new = this;

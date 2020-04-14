@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="col-sm-3">
-                <button type="button" class="btn btn-primary" ng-click="$ctrl.addProduct()">Add Products</button>
+                <button type="button" class="btn btn-primary" ng-click="$ctrl.addCategory()">Add Categories</button>
             </div>
         </div>
         <div class="col-sm-6">
@@ -24,51 +24,30 @@
     <div class="panel-group">
         <table datatable="ng" class="table table-bordered table-striped" export-table>
             <colgroup>
-                <col width="5%" />
                 <col width="10%" />
+                <col width="30%" />
+                <col width="40%" />
                 <col width="10%" />
-                <col width="10%" />
-                <col width="10%" />
-                <col width="10%" />
-                <col width="15%" />
-                <col width="7%" />
-                <col width="7%" />
-                <col width="7%" />
-                <col width="7%" />
-                
+                <col width="10%" />         
             </colgroup>
             <thead>
                 <tr>
                     <th>Number</th>
                     <th>Name</th>
-                    <th>Picture</th>
-                    <th>Categories</th>
-                    <th>Price</th>
-                    <th>Sale</th>
-                    <th>Content</th>
-                    <th>Qty</th>
-                    <th>Qty Bought</th>
+                    <th>Description</th>
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="product in $ctrl.productModels">
+                <tr ng-repeat="category in $ctrl.categoryModels">
                     <td>{{$index +1}}</td>
-                    <td>{{product.name}}</td>
-                    <td><img width="120px" src="{{product.img}}" alt=""></td>
-                    <td>{{product.category_id}}</td>
-                    <td>{{product.price}}</td>
-                    <td>{{product.sale}}</td>
-                    <td>
-                        <p>{{product.content}}</p>
-                    </td>
-                    <td>{{product.qty}}</td>
-                    <td>{{product.qty_bought}}</td>
-                    <td><a href="" ng-click="$ctrl.onEdit(product)"><span class="fa fa-edit">
+                    <td>{{category.name}}</td>
+                    <td>{{category.description}}</td>
+                    <td><a href="" ng-click="$ctrl.onEdit(category)"><span class="fa fa-edit">
                        <span>Edit</span></span></a>
                     </td>
-                    <td> <a href="" ng-click="$ctrl.deleteProduct(product)">
+                    <td> <a href="" ng-click="$ctrl.deleteCategory(category)">
                       <span class="fa fa-trash"> <span>Delete</span></span></a>
                     </td>
                 </tr>
@@ -77,13 +56,7 @@
                 <tr>
                     <th>Number</th>
                     <th>Name</th>
-                    <th>Picture</th>
-                    <th>Categories</th>
-                    <th>Price</th>
-                    <th>Sale</th>
-                    <th>Content</th>
-                    <th>Qty</th>
-                    <th>Qty Bought</th>
+                    <th>Description</th>
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
