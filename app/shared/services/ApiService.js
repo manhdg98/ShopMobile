@@ -22,9 +22,11 @@ function ApiService($http, $window) {
     var getCategory = function() {
         return $http.get('/api/categories', {});
     }
-    var getCategoryByGroup = function(id) {
-        return $http.get('/api/categories/:'+ id);
+
+    var getCategoryById = function(id) {
+        return $http.get('/api/categories/'+id, {});
     }
+
     var addCategory = function(category) {
         return $http.post('/api/categories', category);
     }
@@ -114,6 +116,8 @@ function ApiService($http, $window) {
         getCategory: getCategory,
         getproductUsers:getproductUsers,
         addProductUser:addProductUser,
+
+        getCategoryById: getCategoryById,
         
         editProduct: editProduct,
         editCategory: editCategory,

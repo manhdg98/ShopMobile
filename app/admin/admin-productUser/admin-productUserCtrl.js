@@ -14,7 +14,7 @@ app.controller('Admin-productUserCtrl', function($scope, $http, shareData, apiSe
             });
         });
     })
-    self.idUser = $cookies.get('currentUser')._id;
+    self.idUser = JSON.parse($cookies.get('currentUser'))._id;
     this.init = function() {
             apiService.getproductUsers()
                 .then(function(response) {

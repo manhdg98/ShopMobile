@@ -23,6 +23,8 @@ module.exports.getCategory = (callback, limit) => {
 }
 
 module.exports.getCategoryById = (id, callback) => {
+    console.log("back");
+    console.log(id);
     categories.findById(id, callback);
 }
 

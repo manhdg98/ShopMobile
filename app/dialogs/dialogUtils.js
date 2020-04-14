@@ -22,12 +22,12 @@ function DialogUtils(ModalService, $http, $timeout, apiService, shareData, $loca
             window.new = this;
             var self = this;
             self.productUsers = {
-                "idUser": AuthService.isLoggedIn() ? $cookies.get('currentUser')._id : null,
+                "idUser": AuthService.isLoggedIn() ? JSON.parse($cookies.get('currentUser'))._id : null,
                 "product": [],
-                "username": AuthService.isLoggedIn() ? $cookies.get('currentUser').username: null
+                "username": AuthService.isLoggedIn() ? JSON.parse($cookies.get('currentUser')).username: null
             }
             AuthService.getUserStatus();
-            console.log(AuthService.isLoggedIn());;
+            // console.log(AuthService.isLoggedIn());;
             // if(apiService.listProducts.length){
             //     for (var i = 1; i < apiService.listProducts.length; i++) {
             //       for (var y = 0; y < i; y++) {
@@ -57,14 +57,14 @@ function DialogUtils(ModalService, $http, $timeout, apiService, shareData, $loca
                 }
             }
             this.myChange = function(da) {
-                da.sum = da.amount * da.calo;
+                da.sum = da.amount * da.price;
                 self.init();
             }
             this.init = function() {
                 AuthService.getUserStatus().then(function() {
                     self.getUserStatus = AuthService.isLoggedIn();
                 });
-                console.log(self.productUsers.idUser, "self.productUsers.idUser");
+                // console.log(self.productUsers.idUser, "self.productUsers.idUser");
             }
             this.init();
 
@@ -239,27 +239,35 @@ function DialogUtils(ModalService, $http, $timeout, apiService, shareData, $loca
         function ModalController(close) {
             window.new = this;
             var self = this;
-            this.groupProduct = [{
-                    "name": "Điện thoại",
-                    "id": 1
-                },
-                {
-                    "name": "Máy tính bảng",
-                    "id": 2
-                },
-                {
-                    "name": "Laptop",
-                    "id": 3
-                },
-                {
-                    "name": "Laptop",
-                    "id": 4
-                },
-                {
-                    "name": "Laptop",
-                    "id": 5
-                }
-            ]
+            apiService.getCategory()
+            .then(function(category) {
+                self.categories = category.data;
+
+            })
+            .catch(function(data) {
+                console.log(data, "errr");
+            })
+            // this.categories = [{
+            //         "name": "Điện thoại",
+            //         "id": 1
+            //     },
+            //     {
+            //         "name": "Máy tính bảng",
+            //         "id": 2
+            //     },
+            //     {
+            //         "name": "Laptop",
+            //         "id": 3
+            //     },
+            //     {
+            //         "name": "Laptop",
+            //         "id": 4
+            //     },
+            //     {
+            //         "name": "Laptop",
+            //         "id": 5
+            //     }
+            // ]
             self.productModel = shareData.getData() ? shareData.getData() : {};
             this.addProduct = function() {
                 if (self.image) {

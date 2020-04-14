@@ -3,8 +3,8 @@ app.controller('CheckoutCtrl', function($scope, $http, apiService, AuthService, 
     self.show = false;
     self.productUsers = [];
     self.feedBack = {};
-    self.userFeedBack = $cookies.get('currentUser');
-    self.idUser = AuthService.isLoggedIn() ? $cookies.get('currentUser')._id : null,
+    self.userFeedBack = JSON.parse($cookies.get('currentUser'));
+    self.idUser = AuthService.isLoggedIn() ? JSON.parse($cookies.get('currentUser'))._id : null,
         this.init = function() {
             if (self.idUser) {
                 var productUsers = [];

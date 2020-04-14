@@ -37,11 +37,10 @@ router.post('/', (req, res) => {
 
  router.get('/:id', (req, res) => {
      var id = req.params.id;
-     var id2 = id.split(':');
-     console.log(id,"id");
-     categories.find({
-         groupId: id2
-     }, (err, category) => {
+     console.log(id);
+    //  var id2 = id.split(':');
+    //  console.log(id2,"id");
+     categories.getCategoryById(id, (err, category) => {
          if (err) {
              throw err;
          }

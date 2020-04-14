@@ -127,7 +127,7 @@
                   </ul>
                   <ul class="dropdown-menu" ng-show="headerbarCtrl.getUserStatus">
                     <li><a ng-click="headerbarCtrl.logouts()" href="">Logout</a></li>
-                    <li><a ui-sref="admin">Admin</a></li>
+                    <li ng-show="headerbarCtrl.checkAdmin"><a ui-sref="admin">Admin</a></li>
                     <li><a ui-sref="home.checkout">My Product</a></li>
                   </ul>
                 </div>

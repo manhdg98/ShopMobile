@@ -15,7 +15,7 @@ app.controller('indexCtrl', function($scope, $http, apiService) {
   apiService.getProductByGroup(self.groupId)
     .then(function(product) {
       $scope.data = product.data;
-      console.log('product', product.data);
+      // console.log('product', product.data);
       $scope.addShop = function(id) {
         let pro = $scope.data.find(p => {
           return p._id == id;
@@ -28,7 +28,7 @@ app.controller('indexCtrl', function($scope, $http, apiService) {
            delay: 2,
            timer: 150
         });
-        console.log(apiService.listProducts);
+        // console.log(apiService.listProducts);
         for (var i = 1; i < apiService.listProducts.length; i++) {
           for (var y = 0; y < i; y++) {
             if (apiService.listProducts[i]._id == apiService.listProducts[y]._id) {

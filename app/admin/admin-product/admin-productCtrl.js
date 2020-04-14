@@ -16,23 +16,28 @@ app.controller('Admin-prodctCtrl', function($scope, $http, shareData, apiService
             .then(function(product) {
                 self.productModels = product.data;
                 self.productModels.forEach(function (product) {
-                    switch (product.groupId) {
-                        case 1:
-                            product.group = "Healthy every day";
-                            break;
-                        case 2:
-                            product.group = "Nutrition for baby";
-                            break;
-                        case 3:
-                            product.group = "Nutrition for olders";
-                            break;
-                        case 4:
-                            product.group = "Weight Gain";
-                            break;
-                        case 5:
-                            product.group = "Weight Loss";
-                            break;
-                    };
+                    if(Array.isArray(product.category_id) && product.category_id.length){
+                        apiService.getCategoryById(product.category_id[0]).then(function(category){
+                            product.category = category.data;
+                        })
+                    }
+                    // switch (product.groupId) {
+                    //     case 1:
+                    //         product.group = "Healthy every day";
+                    //         break;
+                    //     case 2:
+                    //         product.group = "Nutrition for baby";
+                    //         break;
+                    //     case 3:
+                    //         product.group = "Nutrition for olders";
+                    //         break;
+                    //     case 4:
+                    //         product.group = "Weight Gain";
+                    //         break;
+                    //     case 5:
+                    //         product.group = "Weight Loss";
+                    //         break;
+                    // };
                     product.stt = i;
                     i = i +1;
                 })

@@ -19,12 +19,12 @@ function Controller($http, $scope,DialogService,AuthService,shareData,$cookies){
           
            
            if(self.getUserStatus){
-               self.user = $cookies.get('currentUser');
+               self.user = JSON.parse($cookies.get('currentUser'));
 
                console.log();
                
-               self.users = $cookies.get('currentUser').username;
-               if($cookies.get('currentUser').role == 'admin'){
+               self.users = JSON.parse($cookies.get('currentUser')).name;
+               if(JSON.parse($cookies.get('currentUser')).role == 'admin'){
                    self.checkAdmin = true;
                };
            }

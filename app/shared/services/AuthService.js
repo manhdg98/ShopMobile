@@ -41,7 +41,9 @@ app.service('AuthService', ['$q', '$timeout', '$http','$rootScope','$cookies',
               // $http.defaults.headers.common['x-access-token'] =  res.access_token;
               // $cookies.putObject('globals',$rootScope.globals);
 
-             $cookies.put('currentUser', response.data.user);
+             $cookies.put('currentUser', JSON.stringify(response.data.user));
+             console.log('userC');
+             console.log(JSON.parse($cookies.get('currentUser')));
              users = response.data.user;
              // checkUser();
             user = true;
