@@ -24,15 +24,21 @@
         <table datatable="ng" class="table table-bordered table-striped"export-table>
             <colgroup>
                 <col width="5%" />
-                <col width="20%" />
-                <col width="20%" />
+                <col width="15%" />
                 <col width="15%" />
                 <col width="10%" />
+                <col width="25%" />
+                <col width="10%" />
+                <col width="10%" />
+                <col width="5%" />
             </colgroup>
           <thead>
           <tr>
               <th>Number</th>
+              <th>Email</th>
               <th>Name</th>
+              <th>Phone Number</th>
+              <th>Address</th>
               <th>Picture</th>
               <th>Level</th>
               <th>Delete</th>
@@ -42,6 +48,11 @@
                 <tr ng-repeat = "user in $ctrl.userModels">
                   <td>{{$index +1}}</td>
                   <td>{{user.username}}</td>
+                  <td>{{user.name}}</td>
+                  <td>{{user.phone}}</td>
+                  <td>
+                    <p>{{user.address}}</p>
+                  </td>
                   <td><img width="120px" src="{{user.img}}" alt=""></td>
                   <td ><strong ng-style ="user.level ? 'color:red':''">{{user.role}}</strong></td>
                   <td ng-hide = '{{user.level}}'> <a href="" ng-click="$ctrl.deleteUser(user)">
@@ -51,11 +62,14 @@
           </tbody>
           <tfoot>
           <tr>
-              <th>Number</th>
-              <th>Name</th>
-              <th>Picture</th>
-              <th>Level</th>
-              <th>Delete</th>
+            <th>Number</th>
+            <th>Email</th>
+            <th>Name</th>
+            <th>Phone Number</th>
+            <th>Address</th>
+            <th>Picture</th>
+            <th>Level</th>
+            <th>Delete</th>
           </tr>
           </tfoot>
         </table>

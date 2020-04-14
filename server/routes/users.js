@@ -19,7 +19,10 @@ router.get('/', (req, res) => {
 router.post('/register', function(req, res) {
     console.log(req.body.username,req.body.password);
     const newUser = new User({
-      username: req.body.username
+      username: req.body.username,
+      name: req.body.name,
+      phone: req.body.phone,
+      address: req.body.address
     });
     User.register(newUser,req.body.password, function(err, account) {
             if (err) {

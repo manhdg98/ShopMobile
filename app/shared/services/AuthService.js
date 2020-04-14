@@ -82,12 +82,15 @@ app.service('AuthService', ['$q', '$timeout', '$http','$rootScope','$cookies',
       var deferred = $q.defer();
       $http.post('api/user/register', {
           username: user.username,
-          password: user.password
+          password: user.password,
+          name: user.name,
+          phone: user.phone,
+          address: user.address
         })
         .then(function(response) {
             console.log(response,'register')
           if (response.status === 200 && response.status) {
-              $cookies.put('currentUser', response.data.account);
+              $cookies.put('currentUser', JSON.stringify(response.data.account));
             deferred.resolve();
           } else {
             deferred.reject();

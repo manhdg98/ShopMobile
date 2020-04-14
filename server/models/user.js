@@ -11,6 +11,15 @@ var user = new Schema({
     password: {
 	type: String,
     },
+    name: {
+        type: String,
+    },
+    phone: {
+        type: String,
+    },
+    address: {
+        type: String,
+    },
     role: {
         type: String,
         default: 'user'

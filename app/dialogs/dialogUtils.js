@@ -174,6 +174,8 @@ function DialogUtils(ModalService, $http, $timeout, apiService, shareData, $loca
             this.login = function() {
                 myDialogs.login();
             }
+
+            //check if user is already exist
             this.checkuser = function() {
                 apiService.getUser()
                     .then(function(user) {
