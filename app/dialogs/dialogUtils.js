@@ -45,7 +45,7 @@ function DialogUtils(ModalService, $http, $timeout, apiService, shareData, $loca
             // };
             self.data.forEach(function(data) {
                 if (data.sum == 0 || !data.sum) {
-                    data.sum = data.calo;
+                    data.sum = data.price;
                 }
             })
             this.delProduct = function(id) {
@@ -57,6 +57,7 @@ function DialogUtils(ModalService, $http, $timeout, apiService, shareData, $loca
                 }
             }
             this.myChange = function(da) {
+                da.qty = da.amount;
                 da.sum = da.amount * da.price;
                 self.init();
             }
