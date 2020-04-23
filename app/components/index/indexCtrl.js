@@ -2,7 +2,8 @@ app.controller('indexCtrl', function($scope, $http, apiService) {
   window.apps = this;
   let self = this;
   this.list = [];
-  self.groupId = 1;
+  self.page = 1;
+  
 
   angular.element(document).ready(function() {
     $('.flexslider').flexslider({
@@ -12,7 +13,7 @@ app.controller('indexCtrl', function($scope, $http, apiService) {
       }
     });
   });
-  apiService.getProductByGroup(self.groupId)
+  apiService.getProduct()
     .then(function(product) {
       $scope.data = product.data;
       // console.log('product', product.data);
@@ -43,6 +44,11 @@ app.controller('indexCtrl', function($scope, $http, apiService) {
 
       }
 
+    });
+
+    apiService.getCategoryByPageId(self.page).then(function(category){
+      $scope.categories = category.data;
+      // console.log($scope.categories)
     })
 
 });

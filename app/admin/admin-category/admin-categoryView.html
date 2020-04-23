@@ -25,8 +25,9 @@
         <table datatable="ng" class="table table-bordered table-striped" export-table>
             <colgroup>
                 <col width="10%" />
+                <col width="20%" />
                 <col width="30%" />
-                <col width="40%" />
+                <col width="20%" />
                 <col width="10%" />
                 <col width="10%" />         
             </colgroup>
@@ -35,6 +36,7 @@
                     <th>Number</th>
                     <th>Name</th>
                     <th>Description</th>
+                    <th>Page</th>
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
@@ -44,6 +46,7 @@
                     <td>{{$index +1}}</td>
                     <td>{{category.name}}</td>
                     <td>{{category.description}}</td>
+                    <td>{{category.page}}</td>
                     <td><a href="" ng-click="$ctrl.onEdit(category)"><span class="fa fa-edit">
                        <span>Edit</span></span></a>
                     </td>
@@ -57,6 +60,7 @@
                     <th>Number</th>
                     <th>Name</th>
                     <th>Description</th>
+                    <th>Page</th>
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>

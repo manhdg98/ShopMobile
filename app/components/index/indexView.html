@@ -8,11 +8,7 @@
           </h3>
           <div class="viewallcat">
               <ul>
-                <li><a href="/iphone-xs-max">iPhone XS Max</a></li>
-                <li><a href="/iphone-xs">iPhone XS</a></li>
-                <li><a href="/iphone-x">iPhone X</a></li>
-                <li><a href="/iphone-8-8-plus">iPhone 8 | iPhone 8 Plus</a></li>
-                <li><a href="/iphone">Xem tất cả</a></li>
+                <li ng-repeat="category in categories"><a href="/a">{{category.name}}</a></li>
               </ul>
           </div>
           <div class="sidebox-body_nhansam">
@@ -27,7 +23,7 @@
                       <div class="grid-list__rating no-rating">
                       </div>
                       <div class="grid-list__item-name">
-                          <a href="/iphone-xr-64gb" class="product-title" >{{data.name}}</a>    
+                          <a ui-sref="home.product({id: data._id})" class="product-title" >{{data.name}}</a>    
                       </div>
                       <div class="grid-list__price">
                           <span class="cm-reload-720002336 price-update" id="price_update_720002336">

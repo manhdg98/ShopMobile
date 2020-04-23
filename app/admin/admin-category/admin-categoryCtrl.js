@@ -16,6 +16,23 @@ app.controller('Admin-categoryCtrl', function($scope, $http, shareData, apiServi
             .then(function(category) {
                 self.categoryModels = category.data;
                 self.categoryModels.forEach(function (category) {
+                    switch (category.page_id) {
+                        case 1:
+                            category.page = "Điện thoại";
+                            break;
+                        case 2:
+                            category.page = "Iphone";
+                            break;
+                        case 3:
+                            category.page = "Tablet";
+                            break;
+                        case 4:
+                            category.page = "Watch";
+                            break;
+                        case 5:
+                            category.page = "Cũ giá rẻ";
+                            break;
+                    };
                     category.stt = i;
                     i = i +1;
                 })

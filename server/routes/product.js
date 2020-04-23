@@ -36,18 +36,27 @@ router.post('/', (req, res) => {
 });
 
  router.get('/:id', (req, res) => {
-     var id = req.params.id;
-     var id2 = id.split(':');
-     console.log(id,"id");
-     products.find({
-         groupId: id2
-     }, (err, product) => {
-         if (err) {
-             throw err;
-         }
-         res.json(product);
-     });
- });
+    var id = req.params.id;
+   
+    products.getProductById(id, (err, product) => {
+        if (err) {
+            throw err;
+        }
+        res.json(product);
+    });
+});
+
+ router.get('/category/:categoryId', (req, res) => {
+    var id = req.params.categoryId;
+    var id2 = id.split(':');
+    console.log(id,"id");
+    products.getProductByCategory(id2, (err, product) => {
+        if (err) {
+            throw err;
+        }
+        res.json(product);
+    });
+});
 
 router.put('/:id', (req, res) => {
     var id = req.params.id;

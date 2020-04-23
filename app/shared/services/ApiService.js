@@ -5,8 +5,11 @@ function ApiService($http, $window) {
     var getProduct = function() {
         return $http.get('/api/products', {});
     }
-    var getProductByGroup = function(id) {
-        return $http.get('/api/products/:'+ id);
+    var getProductById = function(id) {
+        return $http.get('/api/products/'+ id);
+    }
+    var getProductByCategory = function(categoryId) {
+        return $http.get('/api/products/category:'+ categoryId);
     }
     var addProduct = function(product) {
         return $http.post('/api/products', product);
@@ -25,6 +28,10 @@ function ApiService($http, $window) {
 
     var getCategoryById = function(id) {
         return $http.get('/api/categories/'+id, {});
+    }
+
+    var getCategoryByPageId = function(pageId) {
+        return $http.get('/api/categories/page/'+pageId, {});
     }
 
     var addCategory = function(category) {
@@ -134,7 +141,9 @@ function ApiService($http, $window) {
         addpostProduct:addpostProduct,
         deletepostProduct: deletepostProduct,
         editpostProduct: editpostProduct,
-        getProductByGroup:getProductByGroup,
+        getProductById:getProductById,
+        getProductByCategory: getProductByCategory,
+        getCategoryByPageId: getCategoryByPageId,
         getpostProductByGroup :getpostProductByGroup 
 
     }

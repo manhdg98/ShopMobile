@@ -20,12 +20,12 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             },
             access: true
         })
-        .state('home.nutrition-for-baby', {
-            url: "/nutrition-for-baby",
+        .state('home.product', {
+            url: "/product/:id",
             views: {
                 "": {
-                    templateUrl: 'app/components/nutrition-for-elder/nutrition-for-elderView.html',
-                    controller: 'nutrition-for-elderCtrl'
+                    templateUrl: 'app/components/product/productView.html',
+                    controller: 'productCtrl'
                 }
             }
 

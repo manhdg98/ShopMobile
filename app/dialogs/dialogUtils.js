@@ -344,7 +344,25 @@ function DialogUtils(ModalService, $http, $timeout, apiService, shareData, $loca
         function ModalController(close) {
             window.new = this;
             var self = this;
-        
+            this.pages = [{
+                "name": "Điện thoại",
+                "id": 1
+            },
+            {
+                "name": "Iphone",
+                "id": 2
+            },
+            {
+                "name": "Tablet",
+                "id": 3
+            },
+            {
+                "name": "Watch",
+                "id": 4
+            }, {
+                "name": "Cũ giá rẻ",
+                "id": 5
+            }];
             self.categoryModel = shareData.getData() ? shareData.getData() : {};
             this.addCategory = function() {
                 var onSave = undefined;

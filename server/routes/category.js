@@ -48,6 +48,19 @@ router.post('/', (req, res) => {
      });
  });
 
+ router.get('/page/:pageId', (req, res) => {
+    var id = req.params.pageId;
+    console.log(id);
+   //  var id2 = id.split(':');
+   //  console.log(id2,"id");
+    categories.getCategoryByPageId(id, (err, category) => {
+        if (err) {
+            throw err;
+        }
+        res.json(category);
+    });
+});
+
 router.put('/:id', (req, res) => {
     var id = req.params.id;
     var _oid = id.split(':');
