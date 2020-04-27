@@ -34,7 +34,7 @@ module.exports.postImage = function (req, res) {
     form.parse(req);
     form.on('fileBegin', function(name, file) {
         file.name = Date.now() + '_' + file.name;
-        file.path = "../uploads/imgs/" + file.name;
+        file.path = "./uploads/imgs/" + file.name;
     })
     form.on('file', function(name, file){
         console.log('uploaded image', file.name);

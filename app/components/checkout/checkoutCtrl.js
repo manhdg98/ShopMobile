@@ -4,19 +4,13 @@ app.controller('CheckoutCtrl', function($scope, $http, apiService, AuthService, 
     self.productUsers = [];
     self.feedBack = {};
     self.userFeedBack = JSON.parse($cookies.get('currentUser'));
+    self.user = AuthService.isLoggedIn() ? JSON.parse($cookies.get('currentUser')): null;
     self.idUser = AuthService.isLoggedIn() ? JSON.parse($cookies.get('currentUser'))._id : null,
         this.init = function() {
             if (self.idUser) {
-                var productUsers = [];
                 $http.get('/api/productUsers/:' + self.idUser)
                     .then(function(response) {
-                        productUsers = response.data;
-                        productUsers.forEach(function(productUser) {
-                            productUser.product.forEach(function(product) {
-                                product.dateBuy = productUser.create_date
-                                self.productUsers.push(product)
-                            })
-                        })
+                        self.productUsers = response.data;
                         console.log(self.productUsers, "self.productUsers")
                     })
                     .catch(function(data) {

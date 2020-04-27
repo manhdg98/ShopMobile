@@ -21,6 +21,7 @@ db.once('open', function() {
 });
 
 var products = require('./models/products');
+var posts = require('./models/posts');
 var categories = require('./models/categories');
 var user = require('./models/user');
 var productUser = require('./models/productUsers');
@@ -51,6 +52,7 @@ passport.deserializeUser(user.deserializeUser());
 
 var index = require('./routes/index');
 var product = require('./routes/product');
+var post = require('./routes/post');
 var category = require('./routes/category')
 var productUsers = require('./routes/productUsers');
 var users = require('./routes/users');
@@ -61,6 +63,7 @@ var postProduct = require('./routes/postProduct');
 app.use('/', index);
 app.use('/api/user', users);
 app.use('/api/products', product);
+app.use('/api/posts', post);
 app.use('/api/categories', category);
 app.use('/api/productUsers', productUsers);
 app.use('/upload', uploadRoutesApi);

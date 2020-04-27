@@ -3,13 +3,23 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var productUsers = new Schema({
+var Orders = new Schema({
     idUser: {
         type: mongoose.Schema.Types.ObjectId,
         required: true
     },
     username: {
         type:String
+    },
+    phone: {
+        type:String
+    },
+    address: {
+        type:String
+    },
+    status: {
+        type: Number,
+        default: 1
     },
     product: [],
     create_date: {
@@ -18,7 +28,7 @@ var productUsers = new Schema({
     }
 });
 
-var productUsers = module.exports = mongoose.model('productUsers', productUsers);
+var productUsers = module.exports = mongoose.model('Orders', Orders);
 
 module.exports.getProduct = (callback, limit) => {
     productUsers.find(callback).limit(limit);
@@ -33,17 +43,14 @@ module.exports.addProduct = (product, callback) => {
     productUsers.create(product, callback);
 }
 
-module.exports.updateproductUsers = (id, productUsers, options, callback) => {
+module.exports.updateproductUsers = (id, product, callback) => {
     var query = {
         _id: id
     };
     var update = {
-        idUser: productUsers.name,
-        product: productUsers.product,
-        create_date: productUsers.create_date
-
+        status: product.status.id
     }
-    productUsers.findOneAndUpdate(query, update, options, callback);
+    productUsers.update(query,{$set: update}, callback);
 }
 
 module.exports.removeProductUser = (id, callback) => {

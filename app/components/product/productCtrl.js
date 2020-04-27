@@ -12,18 +12,16 @@ app.controller('productCtrl', function($scope, $http, apiService, $stateParams) 
   });
 
   $scope.addShop = function(id) {
-    console.log("aaaaaa");
-    let pro = $scope.data.find(p => {
-      return p._id == id;
-    })
-    apiService.listProducts.push(pro);
+    apiService.listProducts.push($scope.data);
     $.notify({
       icon: 'fa fa-check',
-      message: 'Đã thêm ' + pro.name + ' vào giỏ hàng'
+      message: 'Đã thêm ' + $scope.data + ' vào giỏ hàng'
     },{
        delay: 2,
        timer: 150
     });
+    localStorage.setItem("qty", apiService.listProducts.length);
+        document.getElementById("cart-qty").innerHTML = localStorage.getItem("qty");
     // console.log(apiService.listProducts);
     for (var i = 1; i < apiService.listProducts.length; i++) {
       for (var y = 0; y < i; y++) {

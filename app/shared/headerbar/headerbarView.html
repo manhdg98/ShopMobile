@@ -19,8 +19,8 @@
            <div class="span16 search-block-grid cart-content-grid" >
               <div class=" top-logo float-left">
                  <div class="logo-container">
-                    <a href="" ui-sref="home.index title="Mobile">
-                    <img src="/assests/images/logo.png" style="width:70px; height:51px;" alt="Mobile" class="logo">
+                    <a ui-sref="home.index">
+                        <img src="/assests/images/logo.png" style="width:70px; height:51px;" alt="Mobile" class="logo">
                     </a>
                  </div>
               </div>
@@ -36,42 +36,27 @@
               </div>
               <ul id="vmenu_183" class="navbar ldesign-horizontal-menu">
                  <li class="horizontal-menu-item menu-li-first  icon-top-menu-dien-thoai" data-submenu-id="nav_cart_561">
-                    <a  href="/dien-thoai" class="title_list_item">
+                    <a ui-sref="home.phone" class="title_list_item">
                     Điện thoại
                     </a>
                  </li>
                  <li class="horizontal-menu-item   icon-top-menu-apple" data-submenu-id="nav_cart_562">
-                    <a  href="/iphone" class="title_list_item">
+                    <a  ui-sref="home.iphone" class="title_list_item">
                     iPhone
                     </a>
                  </li>
                  <li class="horizontal-menu-item   icon-top-menu-tablet" data-submenu-id="nav_cart_563">
-                    <a  href="/may-tinh-bang" class="title_list_item">
+                    <a  ui-sref="home.tablet" class="title_list_item">
                     Tablet
                     </a>
                  </li>
                  <li class="horizontal-menu-item   icon-top-menu-watch" data-submenu-id="nav_cart_587">
-                    <a  href="/apple-watch" class="title_list_item">
+                    <a  ui-sref="home.watch" class="title_list_item">
                     Watch
                     </a>
                  </li>
-                 <li class="horizontal-menu-item   icon-top-menu-maycu" data-submenu-id="nav_cart_564">
-                    <a  href="/kho-may-cu" class="title_list_item">
-                    Cũ giá rẻ
-                    </a>
-                 </li>
-                 <li class="horizontal-menu-item   icon-top-menu-phukien" data-submenu-id="nav_cart_565">
-                    <a  href="/phu-kien" class="title_list_item">
-                    Phụ Kiện
-                    </a>
-                 </li>
-                 <li class="horizontal-menu-item   icon-top-menu-tragop" data-submenu-id="nav_cart_566">
-                    <a  href="/huong-dan-mua-tra-gop" class="title_list_item">
-                    Trả Góp
-                    </a>
-                 </li>
                  <li class="horizontal-menu-item  menu-li-last icon-top-menu-thongtin" data-submenu-id="nav_cart_591">
-                    <a  href="/tin-tuc" class="title_list_item">
+                    <a ui-sref="home.posts" class="title_list_item">
                     CÔNG NGHỆ
                     </a>
                  </li>
@@ -105,7 +90,7 @@
                     <a href="" ng-click="headerbarCtrl.showModal()" id="sw_dropdown_135" class="popup-title cm-combination top-icon-cart empty">
                     <i class="icon-basket"></i>
                     <span class="minicart-title">
-                    <span class="basket-cart-amount">0</span>
+                    <span class="basket-cart-amount" id="cart-qty"></span>
                     </a>
                     <!--cart_status_135-->
                  </div>

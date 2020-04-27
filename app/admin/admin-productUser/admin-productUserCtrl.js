@@ -1,6 +1,7 @@
 app.controller('Admin-productUserCtrl', function($scope, $http, shareData, apiService, AuthService, $cookies, DialogService) {
     let self = this;
     self.productUsers = [];
+    self.user = [];
     this.onExportDoc = function(){
         $scope.$broadcast('export-doc', [5]);
     }
@@ -19,10 +20,27 @@ app.controller('Admin-productUserCtrl', function($scope, $http, shareData, apiSe
             apiService.getproductUsers()
                 .then(function(response) {
                     self.productUsers = response.data;
+                    self.productUsers.forEach(function (productUser) {
+                        switch (productUser.status) {
+                            case 1:
+                                productUser.statusP = "Mới";
+                                break;
+                            case 2:
+                                productUser.statusP = "Xử lý";
+                                break;
+                            case 3:
+                                productUser.statusP = "Hoàn thành";
+                                break;
+                            case 4:
+                                productUser.statusP = "Hủy";
+                                break;
+                        };
+                    })
                 })
                 .catch(function(data) {
                     console.log(data, "loi getProductUserById");
-                })
+                })     
+                
     }
     this.deleteproductUsers = function(product) {
         if (confirm('Chắc chắn xóa?'))
@@ -37,6 +55,15 @@ app.controller('Admin-productUserCtrl', function($scope, $http, shareData, apiSe
                 });
                 self.init();
             })
+    }
+
+    this.addProductUser = function() {
+        shareData.setData();
+        DialogService.editProductUserStatus();
+    }
+    this.onEdit = function(product) {
+        shareData.setData(product);
+        DialogService.editProductUserStatus();
     }
 
     this.init()

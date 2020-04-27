@@ -50,10 +50,10 @@ router.post('/', (req, res) => {
     });
 });
 
-router.put('/:_id', (req, res) => {
+router.put('/:id', (req, res) => {
     var id = req.params._id;
     var product = req.body;
-    productUsers.updateproductUsers(id, product, {}, (err, product) => {
+    productUsers.updateproductUsers(id, product, (err, product) => {
         if (err) {
             throw err;
         }

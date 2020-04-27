@@ -1,4 +1,4 @@
-function Controller($http, $scope,DialogService,AuthService,shareData,$cookies){
+function Controller($http, $scope,DialogService,AuthService,shareData,$cookies,apiService){
     let self = this;
     self.showModal = function(){
       DialogService.newCart();

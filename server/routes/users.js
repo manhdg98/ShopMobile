@@ -85,6 +85,17 @@ router.get('/status', function(req, res) {
         status: true
     });
 });
+
+router.get('/:id', (req, res) => {
+    var id = req.params.id;
+    User.getUserById(id, (err, user) => {
+        if (err) {
+            throw err;
+        }
+        res.json(user);
+    });
+});
+
 router.delete('/:id', (req, res) => {
     var id = req.params.id;
     console.log(id,"id");

@@ -20,6 +20,106 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             },
             access: true
         })
+        .state('home.phone', {
+            url: "/phone",
+            views: {
+                "": {
+                    templateUrl: 'app/components/phone/phoneView.html',
+                    controller: 'phoneCtrl',
+                }
+            },
+            access: true
+        })
+        .state('home.phonecate', {
+            url: "/phone/category/:id",
+            views: {
+                "": {
+                    templateUrl: 'app/components/phone/phoneCateView.html',
+                    controller: 'phoneCateCtrl',
+                }
+            },
+            access: true
+        })
+        .state('home.iphone', {
+            url: "/iphone",
+            views: {
+                "": {
+                    templateUrl: 'app/components/iphone/iphoneView.html',
+                    controller: 'iphoneCtrl',
+                }
+            },
+            access: true
+        })
+        .state('home.iphonecate', {
+            url: "/iphone/category/:id",
+            views: {
+                "": {
+                    templateUrl: 'app/components/iphone/iphoneCateView.html',
+                    controller: 'iphoneCateCtrl',
+                }
+            },
+            access: true
+        })
+        .state('home.tablet', {
+            url: "/tablet",
+            views: {
+                "": {
+                    templateUrl: 'app/components/tablet/tabletView.html',
+                    controller: 'tabletCtrl',
+                }
+            },
+            access: true
+        })
+        .state('home.tabletcate', {
+            url: "/tablet/category/:id",
+            views: {
+                "": {
+                    templateUrl: 'app/components/tablet/tabletCateView.html',
+                    controller: 'tabletCateCtrl',
+                }
+            },
+            access: true
+        })
+        .state('home.watch', {
+            url: "/watch",
+            views: {
+                "": {
+                    templateUrl: 'app/components/watch/watchView.html',
+                    controller: 'watchCtrl',
+                }
+            },
+            access: true
+        })
+        .state('home.watchcate', {
+            url: "/watch/category/:id",
+            views: {
+                "": {
+                    templateUrl: 'app/components/watch/watchCateView.html',
+                    controller: 'watchCateCtrl',
+                }
+            },
+            access: true
+        })
+        .state('home.posts', {
+            url: "/posts",
+            views: {
+                "": {
+                    templateUrl: 'app/components/posts/postsView.html',
+                    controller: 'postsCtrl',
+                }
+            },
+            access: true
+        })
+        .state('home.post', {
+            url: "/post/:id",
+            views: {
+                "": {
+                    templateUrl: 'app/components/posts/postView.html',
+                    controller: 'postCtrl',
+                }
+            },
+            access: true
+        })
         .state('home.product', {
             url: "/product/:id",
             views: {
@@ -72,6 +172,18 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
                 "": {
                     templateUrl: 'app/admin/admin-product/admin-productView.html',
                     controller: 'Admin-prodctCtrl',
+                    controllerAs:'$ctrl'
+                }
+            },
+            access: false
+
+        })
+        .state('admin.post', {
+            url: "/list-post",
+            views: {
+                "": {
+                    templateUrl: 'app/admin/admin-post/admin-postView.html',
+                    controller: 'Admin-postCtrl',
                     controllerAs:'$ctrl'
                 }
             },

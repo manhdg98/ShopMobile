@@ -37,6 +37,11 @@ var user = module.exports = mongoose.model('user', user);
 module.exports.getUser = (callback, limit) => {
 	user.find(callback).limit(limit);
 }
+
+module.exports.getUserById = (id, callback) => {
+    user.findById(id, callback);
+}
+
 module.exports.removeUser = (id, callback) => {
     var query = {
         _id: id

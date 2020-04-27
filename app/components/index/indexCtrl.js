@@ -2,7 +2,7 @@ app.controller('indexCtrl', function($scope, $http, apiService) {
   window.apps = this;
   let self = this;
   this.list = [];
-  self.page = 1;
+  self.productData = [];
   
 
   angular.element(document).ready(function() {
@@ -15,7 +15,11 @@ app.controller('indexCtrl', function($scope, $http, apiService) {
   });
   apiService.getProduct()
     .then(function(product) {
-      $scope.data = product.data;
+      //get last 10 product
+      for(i=0; i<10; i++){
+        self.productData.push(product.data[i]);
+        $scope.data = self.productData;
+      }
       // console.log('product', product.data);
       $scope.addShop = function(id) {
         let pro = $scope.data.find(p => {
@@ -29,6 +33,8 @@ app.controller('indexCtrl', function($scope, $http, apiService) {
            delay: 2,
            timer: 150
         });
+        localStorage.setItem("qty", apiService.listProducts.length);
+        document.getElementById("cart-qty").innerHTML = localStorage.getItem("qty");
         // console.log(apiService.listProducts);
         for (var i = 1; i < apiService.listProducts.length; i++) {
           for (var y = 0; y < i; y++) {
@@ -45,10 +51,5 @@ app.controller('indexCtrl', function($scope, $http, apiService) {
       }
 
     });
-
-    apiService.getCategoryByPageId(self.page).then(function(category){
-      $scope.categories = category.data;
-      // console.log($scope.categories)
-    })
 
 });

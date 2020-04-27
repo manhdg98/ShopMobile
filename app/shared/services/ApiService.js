@@ -2,6 +2,8 @@ app.service('apiService', ApiService);
 
 function ApiService($http, $window) {
     var defaultImage = "../../assests/images/2.png";
+
+    // Product Service
     var getProduct = function() {
         return $http.get('/api/products', {});
     }
@@ -9,7 +11,7 @@ function ApiService($http, $window) {
         return $http.get('/api/products/'+ id);
     }
     var getProductByCategory = function(categoryId) {
-        return $http.get('/api/products/category:'+ categoryId);
+        return $http.get('/api/products/category/'+ categoryId);
     }
     var addProduct = function(product) {
         return $http.post('/api/products', product);
@@ -22,6 +24,25 @@ function ApiService($http, $window) {
         return $http.delete('/api/products/:'+ id);
     }
 
+    //Post Service
+    var getPost = function() {
+        return $http.get('/api/posts', {});
+    }
+    var getPostById = function(id) {
+        return $http.get('/api/posts/'+ id);
+    }
+    var addPost = function(post) {
+        return $http.post('/api/posts', post);
+    }
+    var editPost = function(post) {
+        var id = post._id;
+        return $http.put('/api/posts/:'+id, post);
+    }
+    var deletePost = function(id) {
+        return $http.delete('/api/posts/:'+ id);
+    }
+
+    //Category Service
     var getCategory = function() {
         return $http.get('/api/categories', {});
     }
@@ -62,9 +83,15 @@ function ApiService($http, $window) {
         return $http.delete('/api/postproduct/:'+ id);
     }
 
+    //User Service
     var getUser = function() {
         return $http.get('/api/user', {});
     }
+
+    var getUserById = function(id){
+        return $http.get('/api/user/'+ id);
+    }
+
     var deleteUser = function(id) {
         return $http.delete('/api/user/:'+ id);
     }
@@ -74,6 +101,12 @@ function ApiService($http, $window) {
     var addProductUser = function(product) {
         return $http.post('/api/productUsers/',product);
     }
+
+    var editProductUser = function(product) {
+        var id = product._id;
+        return $http.put('/api/productUsers/:'+id, product);
+    }
+
     var deleteProductUser = function(id) {
         return $http.delete('/api/productUsers/:'+ id);
     }
@@ -114,22 +147,31 @@ function ApiService($http, $window) {
     return {
         uploadAvatar: uploadAvatar,
         getUser: getUser,
+        getUserById : getUserById,
         listProducts: listProducts,
         product: product,
         addProduct:addProduct,
+        addPost: addPost,
         addCategory: addCategory,
         defaultImage: defaultImage,
+
         getProduct: getProduct,
+        getPost: getPost,
         getCategory: getCategory,
         getproductUsers:getproductUsers,
         addProductUser:addProductUser,
 
         getCategoryById: getCategoryById,
         
+        //Edit
         editProduct: editProduct,
+        editPost: editPost,
         editCategory: editCategory,
+        editProductUser: editProductUser,
         
+        //Delete
         deleteProduct:deleteProduct,
+        deletePost: deletePost,
         deleteCategory:deleteCategory,
         deleteUser:deleteUser,
         deleteProductUser:deleteProductUser,
@@ -143,6 +185,7 @@ function ApiService($http, $window) {
         editpostProduct: editpostProduct,
         getProductById:getProductById,
         getProductByCategory: getProductByCategory,
+        getPostById: getPostById,
         getCategoryByPageId: getCategoryByPageId,
         getpostProductByGroup :getpostProductByGroup 
 

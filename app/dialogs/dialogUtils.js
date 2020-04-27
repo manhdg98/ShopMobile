@@ -24,7 +24,9 @@ function DialogUtils(ModalService, $http, $timeout, apiService, shareData, $loca
             self.productUsers = {
                 "idUser": AuthService.isLoggedIn() ? JSON.parse($cookies.get('currentUser'))._id : null,
                 "product": [],
-                "username": AuthService.isLoggedIn() ? JSON.parse($cookies.get('currentUser')).username: null
+                "username": AuthService.isLoggedIn() ? JSON.parse($cookies.get('currentUser')).username: null,
+                "phone": AuthService.isLoggedIn() ? JSON.parse($cookies.get('currentUser')).phone: null,
+                "address": AuthService.isLoggedIn() ? JSON.parse($cookies.get('currentUser')).address: null
             }
             AuthService.getUserStatus();
             // console.log(AuthService.isLoggedIn());;
@@ -44,6 +46,7 @@ function DialogUtils(ModalService, $http, $timeout, apiService, shareData, $loca
                 this.data = apiService.listProducts;
             // };
             self.data.forEach(function(data) {
+                data.amount = 1;
                 if (data.sum == 0 || !data.sum) {
                     data.sum = data.price;
                 }
@@ -54,7 +57,7 @@ function DialogUtils(ModalService, $http, $timeout, apiService, shareData, $loca
                         self.data.splice(i, 1);
                         self.init();
                     }
-                }
+            }
             }
             this.myChange = function(da) {
                 da.qty = da.amount;
@@ -69,8 +72,10 @@ function DialogUtils(ModalService, $http, $timeout, apiService, shareData, $loca
             }
             this.init();
 
+
             this.saveProducUser = function() {
                 self.productUsers.product = self.data;
+                self.productUsers.user = JSON.parse($cookies.get('currentUser'));
                 if (AuthService.isLoggedIn()) {
                     apiService.addProductUser(self.productUsers)
                         .then(function(response) {
@@ -250,27 +255,6 @@ function DialogUtils(ModalService, $http, $timeout, apiService, shareData, $loca
             .catch(function(data) {
                 console.log(data, "errr");
             })
-            // this.categories = [{
-            //         "name": "Điện thoại",
-            //         "id": 1
-            //     },
-            //     {
-            //         "name": "Máy tính bảng",
-            //         "id": 2
-            //     },
-            //     {
-            //         "name": "Laptop",
-            //         "id": 3
-            //     },
-            //     {
-            //         "name": "Laptop",
-            //         "id": 4
-            //     },
-            //     {
-            //         "name": "Laptop",
-            //         "id": 5
-            //     }
-            // ]
             self.productModel = shareData.getData() ? shareData.getData() : {};
             this.addProduct = function() {
                 if (self.image) {
@@ -307,7 +291,15 @@ function DialogUtils(ModalService, $http, $timeout, apiService, shareData, $loca
                             console.log("upload avatar fail", err);
                         })
                 } else {
-                    apiService.editProduct(self.productModel).then(function(data) {
+                    self.productModel.img = 'uploads/imgs/1582873184295_iphoneX.jpg';
+                    var onSave = undefined;
+                    if (self.productModel._id == undefined || self.productModel._id == 0){
+                        onSave = apiService.addProduct;
+                    }
+                    else {
+                        onSave = apiService.editProduct;
+                    }
+                    onSave(self.productModel).then(function(data) {
                             self.productModel = {};
                             $.notify({
                                 icon: 'fa fa-check',
@@ -340,6 +332,59 @@ function DialogUtils(ModalService, $http, $timeout, apiService, shareData, $loca
             });
         });
     }
+    myDialogs.editProductUserStatus = function() {
+        function ModalController(close) {
+            window.new = this;
+            var self = this;
+            this.statusP = [{
+                "name": "Mới",
+                "id": 1
+            },
+            {
+                "name": "Xử lý",
+                "id": 2
+            },
+            {
+                "name": "Hoàn thành",
+                "id": 3
+            },
+            {
+                "name": "Hủy",
+                "id": 4
+            }];
+            self.productUserModel = shareData.getData() ? shareData.getData() : {};
+            this.editProductUser = function() {
+                apiService.editProductUser(self.productUserModel).then(function(data) {
+                        self.productUserModel = {};
+                        $.notify({
+                            icon: 'fa fa-check',
+                            message: 'Update success !!!'
+                        }, {
+                            delay: 2,
+                            timer: 200
+                        });
+                    })
+                    .catch(function(data) {
+                        console.log(data, "addProductUser")
+                    })
+            }
+
+
+        }
+
+        ModalService.showModal({
+            templateUrl: 'app/dialogs/modal-addProductUser/addProductUserView.html',
+            controller: ModalController,
+            controllerAs: 'Modal'
+        }).then(function(modal) {
+            modal.element.modal();
+            modal.close.then(function(data) {
+                $('.modal-backdrop').last().remove();
+                $('body').removeClass('modal-open');
+            });
+        });
+    }
+
     myDialogs.newCategory = function() {
         function ModalController(close) {
             window.new = this;
@@ -408,45 +453,34 @@ function DialogUtils(ModalService, $http, $timeout, apiService, shareData, $loca
         function ModalController(close) {
             window.new = this;
             var self = this;
-            this.groupProduct = [{
-                    "name": "Điện thoại",
+            this.statusPost = [{
+                    "name": "Hiển thị",
                     "id": 1
                 },
                 {
-                    "name": "Máy tính bảng",
+                    "name": "Không hiển thị",
                     "id": 2
-                },
-                {
-                    "name": "Laptop",
-                    "id": 3
-                },
-                {
-                    "name": "Laptop",
-                    "id": 4
-                }, {
-                    "name": "Laptop",
-                    "id": 5
                 }
             ]
-            self.productModel = shareData.getData() ? shareData.getData() : {};
-            this.addProduct = function() {
-                if (self.image) {
-                    console.log(self.image, "self.avatar");
+            self.postModel = shareData.getData() ? shareData.getData() : {};
+            this.addPost = function() {
+                if (self.image2) {
+                    console.log(self.image2, "self.avatar");
                     var formData = new FormData();
-                    formData.append('file', self.image);
+                    formData.append('file', self.image2);
                     uploadService.uploadImage(formData)
                         .then((rs) => {
-                            self.productModel.img = rs.data.content;
-                            console.log(self.productModel.img, "self.productModel.img")
+                            self.postModel.img = rs.data.content;
+                            console.log(self.postModel.img, "self.postModel.img")
                             var onSave = undefined;
-                            if (self.productModel._id == undefined || self.productModel._id == 0)
-                                onSave = apiService.addpostProduct;
+                            if (self.postModel._id == undefined || self.postModel._id == 0)
+                                onSave = apiService.addPost;
                             else {
-                                onSave = apiService.editpostProduct;
+                                onSave = apiService.editPost;
                             }
-                            console.log(self.productModel ,"self.productModel ");
-                            onSave(self.productModel).then(function(data) {
-                                    self.productModel = {};
+                        
+                            onSave(self.postModel).then(function(data) {
+                                    self.postModel = {};
                                     $.notify({
                                         icon: 'fa fa-check',
                                         message: 'Update success !!!!'
@@ -455,16 +489,22 @@ function DialogUtils(ModalService, $http, $timeout, apiService, shareData, $loca
                                         timer: 200
                                     });
                                     onloadListPost();
+                                    $location.path('/admin/list-post');
                                 })
                                 .catch(function(data) {
-                                    console.log(data, "addProduct")
+                                    console.log(data, "addPost")
                                 })
                         }).catch((err) => {
-                            console.log("upload avatar fail", err);
+                            console.log("upload image fail", err);
                         })
                 } else {
-                    apiService.editpostProduct(self.productModel).then(function(data) {
-                            self.productModel = {};
+                    if (self.postModel._id == undefined || self.postModel._id == 0)
+                        onSave = apiService.addPost;
+                    else {
+                        onSave = apiService.editPost;
+                    }
+                    onSave(self.postModel).then(function(data) {
+                            self.postModel = {};
                             $.notify({
                                 icon: 'fa fa-check',
                                 message: 'Update success !!!!'
@@ -475,7 +515,7 @@ function DialogUtils(ModalService, $http, $timeout, apiService, shareData, $loca
                              onloadListPost();
                         })
                         .catch(function(data) {
-                            console.log(data, "addProduct")
+                            console.log(data, "addPost")
                         })
                 }
             }

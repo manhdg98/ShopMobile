@@ -49,7 +49,7 @@
 
         </div>
         <button type="button" ng-click="close('No')" class="btn btn-default" data-dismiss="modal">Hủy</button>
-        <button type="button" ng-click="Modal.saveProducUser()" class="btn btn-primary" data-dismiss="modal" ng-disabled="!Modal.data.length">Đặt hàng</button>
+        <button type="button" ng-click="Modal.saveProducUser()" class="btn btn-primary" data-dismiss="modal" ng-disabled="!Modal.data.length || Modal.data.sum == 0">Đặt hàng</button>
       </div>
     </div>
   </div>
