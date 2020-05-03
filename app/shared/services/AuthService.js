@@ -5,7 +5,7 @@ app.service('AuthService', ['$q', '$timeout', '$http','$rootScope','$cookies',
     var users = [];
     // return available functions for use in the controllers
     function isLoggedIn() {
-      if (user) {
+      if ($cookies.get('currentUser')) {
         return true;
       } else {
         return false;

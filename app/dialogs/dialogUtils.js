@@ -55,6 +55,8 @@ function DialogUtils(ModalService, $http, $timeout, apiService, shareData, $loca
                 for (i in self.data) {
                     if (self.data[i]._id == id) {
                         self.data.splice(i, 1);
+                        localStorage.setItem("qty", self.data.length);
+                        document.getElementById("cart-qty").innerHTML = localStorage.getItem("qty");
                         self.init();
                     }
             }
@@ -75,22 +77,36 @@ function DialogUtils(ModalService, $http, $timeout, apiService, shareData, $loca
 
             this.saveProducUser = function() {
                 self.productUsers.product = self.data;
-                self.productUsers.user = JSON.parse($cookies.get('currentUser'));
                 if (AuthService.isLoggedIn()) {
+                    self.productUsers.user = JSON.parse($cookies.get('currentUser'));
                     apiService.addProductUser(self.productUsers)
                         .then(function(response) {
-                            self.data = [];
-                            apiService.listProducts = [];
-                            $.notify({
-                                icon: 'fa fa-check',
-                                message: 'Save success !!!!'
-                            }, {
-                                delay: 2,
-                                timer: 200
-                            });
-                            $timeout(function() {
-                                $location.path('/checkout');
-                            }, 200);
+                            if(response.data.status == 200){
+                                self.data = [];
+                                apiService.listProducts = [];
+                                $.notify({
+                                    icon: 'fa fa-check',
+                                    message: 'Save success !!!!'
+                                }, {
+                                    delay: 2,
+                                    timer: 200
+                                });
+                                $timeout(function() {
+                                    $location.path('/checkout');
+                                }, 200);
+                            }
+                            else{
+                                self.data = [];
+                                apiService.listProducts = [];
+                                $.notify({
+                                    icon: 'fa fa-check',
+                                    message: `Số lượng hàng của ${response.data.item.name} không đủ !!!!`
+                                }, {
+                                    delay: 2,
+                                    timer: 200
+                                });
+                            }
+                            
 
                         })
                         .catch(function(data) {

@@ -10,7 +10,10 @@ var productspData = new Schema({
     category_id: [{ type: Schema.Types.ObjectId, ref: 'Category' }],
     content: String,
     qty: Number,
-    qty_bought: Number,
+    qty_bought: {
+        type: Number,
+        default: 0
+    },
     img:{
         type: String,
         default : "/assests/images/default.png",

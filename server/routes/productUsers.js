@@ -42,19 +42,31 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
     var product = req.body;
+    console.log('ewrq')
+
     productUsers.addProduct(product, (err, product) => {
         if (err) {
-            throw err;
-        }
-        res.json(product);
+            res.json({
+                status: 400,
+                item: err
+            })
+        } else{
+            res.json({
+                status: 200
+            });
+        } 
+        
     });
 });
 
 router.put('/:id', (req, res) => {
-    var id = req.params._id;
+    var id = req.params.id;
+    console.log('id: '+id);
     var product = req.body;
     productUsers.updateproductUsers(id, product, (err, product) => {
+
         if (err) {
+            console.log(err);
             throw err;
         }
         res.json(product);

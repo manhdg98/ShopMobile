@@ -104,7 +104,7 @@ function ApiService($http, $window) {
 
     var editProductUser = function(product) {
         var id = product._id;
-        return $http.put('/api/productUsers/:'+id, product);
+        return $http.put('/api/productUsers/'+id, product);
     }
 
     var deleteProductUser = function(id) {

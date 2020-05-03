@@ -11,6 +11,22 @@ app.controller('CheckoutCtrl', function($scope, $http, apiService, AuthService, 
                 $http.get('/api/productUsers/:' + self.idUser)
                     .then(function(response) {
                         self.productUsers = response.data;
+                        self.productUsers.forEach(function (productUser) {
+                            switch (productUser.status) {
+                                case 1:
+                                    productUser.statusP = "Mới";
+                                    break;
+                                case 2:
+                                    productUser.statusP = "Xử lý";
+                                    break;
+                                case 3:
+                                    productUser.statusP = "Hoàn thành";
+                                    break;
+                                case 4:
+                                    productUser.statusP = "Hủy";
+                                    break;
+                            };
+                        })
                         console.log(self.productUsers, "self.productUsers")
                     })
                     .catch(function(data) {
