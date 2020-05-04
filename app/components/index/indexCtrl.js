@@ -3,6 +3,7 @@ app.controller('indexCtrl', function($scope, $http, apiService) {
   let self = this;
   this.list = [];
   self.productData = [];
+  self.topProductData = [];
   
 
   angular.element(document).ready(function() {
@@ -26,6 +27,7 @@ app.controller('indexCtrl', function($scope, $http, apiService) {
           return p._id == id;
         })
         apiService.listProducts.push(pro);
+        localStorage.setItem("listProducts", JSON.stringify(apiService.listProducts));
         $.notify({
           icon: 'fa fa-check',
           message: 'Đã thêm ' + pro.name + ' vào giỏ hàng'
@@ -51,5 +53,17 @@ app.controller('indexCtrl', function($scope, $http, apiService) {
       }
 
     });
+
+apiService.getTopProduct()
+  .then(function(product) {
+    //get last 10 product
+    for(i=0; i<10; i++){
+      if(product.data[i].qty_bought > 0){
+        self.topProductData.push(product.data[i]);
+      }
+      $scope.topData = self.topProductData;
+    }
+
+  });
 
 });

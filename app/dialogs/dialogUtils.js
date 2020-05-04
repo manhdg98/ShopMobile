@@ -86,7 +86,7 @@ function DialogUtils(ModalService, $http, $timeout, apiService, shareData, $loca
                                 apiService.listProducts = [];
                                 $.notify({
                                     icon: 'fa fa-check',
-                                    message: 'Save success !!!!'
+                                    message: 'Order success !!!!'
                                 }, {
                                     delay: 2,
                                     timer: 200
@@ -100,10 +100,10 @@ function DialogUtils(ModalService, $http, $timeout, apiService, shareData, $loca
                                 apiService.listProducts = [];
                                 $.notify({
                                     icon: 'fa fa-check',
-                                    message: `Số lượng hàng của ${response.data.item.name} không đủ !!!!`
+                                    message: `Số lượng hàng trong kho của ${response.data.item.name} không đủ !!!!`
                                 }, {
                                     delay: 2,
-                                    timer: 200
+                                    timer: 1000
                                 });
                             }
                             

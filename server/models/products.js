@@ -38,6 +38,10 @@ module.exports.getProduct = (callback, limit) => {
     products.find(callback).limit(limit);
 }
 
+module.exports.getTopProduct = (callback, limit) => {
+    products.find(callback).sort({ "qty_bought": -1 }).limit(10);
+}
+
 module.exports.getProductById = (id, callback) => {
     products.findById(id, callback);
 }

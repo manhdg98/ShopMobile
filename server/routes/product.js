@@ -25,6 +25,17 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/top', (req, res) => {
+    products.getTopProduct((err, products) => {
+        if (err) {
+            res.status(555).send(result.fail);
+            res.end();
+        }
+        res.json(products);
+        res.end();
+    });
+});
+
 router.post('/', (req, res) => {
     var product = req.body;
     products.addProduct(product, (err, product) => {

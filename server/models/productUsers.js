@@ -49,7 +49,7 @@ function updateProducts(products, qty, qty_bought, cb) {
             {_id: item._id}, 
             {$set: {
                 qty: qty[index] - item.amount,
-                qty_bought: qty_bought[index]  + item.amount
+                qty_bought: Number(qty_bought[index])  + Number(item.amount)
             }},
             (err, prod)=>{
             if(err){

@@ -7,6 +7,9 @@ function ApiService($http, $window) {
     var getProduct = function() {
         return $http.get('/api/products', {});
     }
+    var getTopProduct = function() {
+        return $http.get('/api/products/top', {});
+    }
     var getProductById = function(id) {
         return $http.get('/api/products/'+ id);
     }
@@ -142,6 +145,9 @@ function ApiService($http, $window) {
    
 
     var listProducts = [];
+    // if(localStorage.getItem("listProducts") != null){
+    //     listProducts = JSON.parse(localStorage.getItem("listProducts"))
+    // }
     var product = {};
 
     return {
@@ -156,6 +162,7 @@ function ApiService($http, $window) {
         defaultImage: defaultImage,
 
         getProduct: getProduct,
+        getTopProduct: getTopProduct,
         getPost: getPost,
         getCategory: getCategory,
         getproductUsers:getproductUsers,

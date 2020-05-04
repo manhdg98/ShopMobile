@@ -36,7 +36,8 @@
                               <!--old_price_update_720002336-->
                             </span>
                             <div class="snipcart-details">
-                            <input type="button" class="btn btn-success" value="ADD TO CART" ng-click="addShop(data._id)" class="button" />
+                              <input ng-if="data.qty > 0" type="button" class="btn btn-success" value="ADD TO CART" ng-click="addShop(data._id)" class="button" />
+                              <input ng-if="data.qty <= 0" type="button" class="btn btn-danger" value="HẾT HÀNG"  class="button" />
                           </div>
                         </div>
                       </div>
