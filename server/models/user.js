@@ -48,3 +48,47 @@ module.exports.removeUser = (id, callback) => {
     };
     user.remove(query, callback);
 }
+
+module.exports.updateUser = (id, userUpdate, callback) => {
+    
+    // User.findById(id, function(err,found){
+    //     if(err){
+    //         res.redirect("back")
+    //         res.send('User not found with the proper ID')
+    //     } else {
+    //         if(user.password){
+    //             found.authenticate(user.password, function(err,model,passwordError){
+    //                 if(passwordError){
+    //                     console.log(err)
+    //                     res.send('The given password is incorrect!!');
+    //                 } else if(model) {
+        user.findById(id, function(err,found){
+                        var query = {
+                            _id: id
+                        };
+                        if(userUpdate.password != null && userUpdate.password != ""){
+                            found.setPassword(userUpdate.password,(err,found) =>{
+                                if (err) return next(err);
+                                found.save();
+                            });
+                            // found.save();
+                            
+                        }
+                        var update = {
+                            name: userUpdate.name,
+                            phone: userUpdate.phone,
+                            address: userUpdate.address
+                        }
+
+                        user.updateOne(query,{$set: update}, callback);
+              
+                    });
+                    
+    //                 }
+    //             });
+    //         } else {
+    //              res.send('Please input your account password!!');
+    //         }
+    //     }
+    // })
+}

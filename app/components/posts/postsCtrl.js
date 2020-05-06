@@ -13,7 +13,7 @@ app.controller('postsCtrl', function($scope, $http, apiService) {
       }
     });
   });
-  apiService.getPost()
+  apiService.getDisplayPost()
     .then(function(post) {
       $scope.data = post.data;
       // console.log('post', post.data);

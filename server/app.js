@@ -11,6 +11,8 @@ var passport = require('passport');
 var localStrategy = require('passport-local').Strategy;
 var debug = require('debug')('passport-mongo');
 var formidable = require('formidable');
+var http = require('http').Server(app);
+// var io = require('socket.io')(http);
 
 mongoose.connect('mongodb://localhost/shops');
 // mongoose.connect('mongodb://meanstack:meanstack@ds014648.mlab.com:14648/meanstack');
@@ -42,6 +44,10 @@ app.use(require('express-session')({
 }));
 
 app.use(express.static(path.join(__dirname, '../')));
+app.get('/chat', function(req, res){
+	res.sendFile(__dirname + '/index.html');
+});
+
 
 // configure passport
 app.use(passport.initialize());
@@ -78,4 +84,32 @@ app.set('port', process.env.PORT || 3000);
 var server = app.listen(app.get('port'), function() {
   debug('Express server listening on port ' + server.address().port);
 });
+var io = require('socket.io').listen(server);
+
+io.on('connection', function(socket){
+	var user_id = Math.floor((Math.random() * 10000) + 1);
+	socket.emit('my id',user_id);					// Emits the user id 
+	
+	socket.on('chat message', function(msg){
+		var data = {
+			user_id : user_id,
+			msg: msg
+		};
+    	io.emit('chat message', data);
+  });
+
+	socket.on('connection success', function(msg){
+		var data = {
+			user_id : user_id,
+			msg: msg
+		};
+    	io.emit('connection success', data);
+  });
+
+	socket.on('disconnect', function(msg){
+    	io.emit('disconnected','user-' + user_id);
+  });
+
+});
+
 module.exports = app;

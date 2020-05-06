@@ -11,7 +11,12 @@ function Controller($http, $scope,DialogService,AuthService,shareData,$cookies,a
           self.init();
    }
    self.showRegister = function () {
+
        DialogService.register();
+   }
+   self.showEditUser = function () {
+        shareData.setData(JSON.parse($cookies.get('currentUser')));
+        DialogService.editUser();
    }
    self.init = function () {
        AuthService.getUserStatus().then(function () {

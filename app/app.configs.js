@@ -20,6 +20,16 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             },
             access: true
         })
+        .state('home.search', {
+            url: "/search",
+            views: {
+                "": {
+                    templateUrl: 'app/components/search/searchView.html',
+                    controller: 'searchCtrl',
+                }
+            },
+            access: true
+        })
         .state('home.phone', {
             url: "/phone",
             views: {
