@@ -96,6 +96,27 @@ router.get('/:id', (req, res) => {
     });
 });
 
+router.put('/:id', (req, res) => {
+    
+    var id = req.params.id;
+    var user = req.body;
+    // console.log(user);
+    User.updateUser(id, user, (err, users) => {
+    
+        if (err) {
+            console.log("err",err);
+            throw err;
+        }
+        User.getUserById(id, (err1,user) =>{
+            if (err1) {
+                console.log("err",err1);
+                throw err;
+            }
+            res.json(user);
+        });
+    });
+});
+
 router.delete('/:id', (req, res) => {
     var id = req.params.id;
     console.log(id,"id");

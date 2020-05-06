@@ -25,6 +25,17 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/display', (req, res) => {
+    posts.getDisplayPost((err, posts) => {
+        if (err) {
+            res.status(555).send(result.fail);
+            res.end();
+        }
+        res.json(posts);
+        res.end();
+    });
+});
+
 router.post('/', (req, res) => {
     console.log("---------------------");
     console.log(req);
@@ -56,7 +67,22 @@ router.put('/:id', (req, res) => {
     var _oid = id.split(':');
     var id2 = ObjectId(_oid[1]);
     var post = req.body;
+    console.log(post);
     posts.updatePost(id2, post,(err, post) => {
+        if (err) {
+            throw err;
+        }
+        res.json(post);
+    });
+});
+
+router.put('/comment/:id', (req, res) => {
+    var id = req.params.id;
+    console.log(id,"id");
+    console.log(req.body);
+    var comment = req.body
+    console.log(comment);
+    posts.addComment(id, comment,(err, post) => {
         if (err) {
             throw err;
         }

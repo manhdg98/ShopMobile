@@ -29,7 +29,10 @@
                     <div class="search-autocomplete"></div>
                     <form action="" name="search_form" method="get">
                        <input type="hidden" name="dispatch" value="products.search">
-                       <input type="text" name="Product" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Tìm kiếm';}" required=""/><button title="Search" class="search-magnifier" type="submit"><i class="icon-search"></i></button>
+                          <input type="text" name="Product" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Tìm kiếm';}" required=""/>
+                        <a ui-sref="home.search">  
+                          <button title="Search" class="search-magnifier" ><i class="icon-search"></i></button>
+                        </a>
                     </form>
                  </div>
                  <!-- Inline script moved to the bottom of the page -->
@@ -113,6 +116,7 @@
                   <ul class="dropdown-menu" ng-show="headerbarCtrl.getUserStatus">
                     <li><a ng-click="headerbarCtrl.logouts()" href="">Logout</a></li>
                     <li ng-show="headerbarCtrl.checkAdmin"><a ui-sref="admin">Admin</a></li>
+                    <li><a ng-click="headerbarCtrl.showEditUser()"href="">Edit Profile</a></li>
                     <li><a ui-sref="home.checkout">My Order</a></li>
                   </ul>
                 </div>

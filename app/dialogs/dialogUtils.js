@@ -259,6 +259,44 @@ function DialogUtils(ModalService, $http, $timeout, apiService, shareData, $loca
             });
         });
     }
+    myDialogs.editUser = function() {
+        function ModalController(close) {
+            var self = this;
+            self.message = "";
+            self.modalClose = "modal";
+            self.editForm = shareData.getData() ? shareData.getData() : {};
+            this.editUser = function() {
+                apiService.editUser(self.editForm).then(function(response) {
+                    self.editForm = response.data;
+                    $cookies.put('currentUser', JSON.stringify(response.data));
+                    self.message = 'Update success !!!';
+                    $.notify({
+                        icon: 'fa fa-check',
+                        message: 'Update success !!!'
+                    }, {
+                        delay: 2,
+                        timer: 200
+                    });
+                })
+                .catch(function(data) {
+                    console.log(data, "editUser")
+                })
+            }
+        }
+
+        ModalService.showModal({
+            templateUrl: 'app/dialogs/authentication/editUser/editUserView.html',
+            controller: ModalController,
+            controllerAs: 'Modal'
+        }).then(function(modal) {
+            modal.element.modal();
+            modal.close.then(function(data) {
+                $('.modal-backdrop').last().remove();
+                $('body').removeClass('modal-open');
+            });
+        });
+    }
+
     myDialogs.newProduct = function() {
         function ModalController(close) {
             window.new = this;

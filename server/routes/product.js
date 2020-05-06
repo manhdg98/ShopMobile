@@ -36,6 +36,18 @@ router.get('/top', (req, res) => {
     });
 });
 
+router.get('/search/:name', (req, res) => {
+    var name = req.param.name;
+    products.searchProduct(name,(err, products) => {
+        if (err) {
+            res.status(555).send(result.fail);
+            res.end();
+        }
+        res.json(products);
+        res.end();
+    });
+});
+
 router.post('/', (req, res) => {
     var product = req.body;
     products.addProduct(product, (err, product) => {

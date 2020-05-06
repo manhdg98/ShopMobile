@@ -31,6 +31,9 @@ function ApiService($http, $window) {
     var getPost = function() {
         return $http.get('/api/posts', {});
     }
+    var getDisplayPost = function() {
+        return $http.get('/api/posts/display', {});
+    }
     var getPostById = function(id) {
         return $http.get('/api/posts/'+ id);
     }
@@ -89,6 +92,11 @@ function ApiService($http, $window) {
     //User Service
     var getUser = function() {
         return $http.get('/api/user', {});
+    }
+    
+    var editUser = function(user) {
+        var id = user._id;
+        return $http.put('/api/user/'+id, user);
     }
 
     var getUserById = function(id){
@@ -164,6 +172,7 @@ function ApiService($http, $window) {
         getProduct: getProduct,
         getTopProduct: getTopProduct,
         getPost: getPost,
+        getDisplayPost: getDisplayPost,
         getCategory: getCategory,
         getproductUsers:getproductUsers,
         addProductUser:addProductUser,
@@ -175,6 +184,7 @@ function ApiService($http, $window) {
         editPost: editPost,
         editCategory: editCategory,
         editProductUser: editProductUser,
+        editUser: editUser,
         
         //Delete
         deleteProduct:deleteProduct,
