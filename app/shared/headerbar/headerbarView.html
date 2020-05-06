@@ -29,8 +29,8 @@
                     <div class="search-autocomplete"></div>
                     <form action="" name="search_form" method="get">
                        <input type="hidden" name="dispatch" value="products.search">
-                          <input type="text" name="Product" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Tìm kiếm';}" required=""/>
-                        <a ui-sref="home.search">  
+                          <input type="text" ng-model="searchForm" name="Product" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Tìm kiếm';}" required=""/>
+                        <a ui-sref="home.search({name: searchForm})">  
                           <button title="Search" class="search-magnifier" ><i class="icon-search"></i></button>
                         </a>
                     </form>

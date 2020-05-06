@@ -1,5 +1,6 @@
 function Controller($http, $scope,DialogService,AuthService,shareData,$cookies,apiService){
     let self = this;
+    var searchForm ="";
     self.showModal = function(){
       DialogService.newCart();
    }

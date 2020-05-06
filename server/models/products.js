@@ -43,7 +43,9 @@ module.exports.getTopProduct = (callback, limit) => {
 }
 
 module.exports.searchProduct = (name,callback, limit) => {
-    products.find({name: / name /},callback);
+   
+    products.find({name: new RegExp(name)},callback);
+    // console.log(condition);
 }
 
 module.exports.getProductById = (id, callback) => {

@@ -21,7 +21,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             access: true
         })
         .state('home.search', {
-            url: "/search",
+            url: "/search/:name",
             views: {
                 "": {
                     templateUrl: 'app/components/search/searchView.html',
