@@ -1,9 +1,13 @@
-app.controller('searchCtrl', function($scope, $http, apiService) {
+app.controller('searchCtrl', function($scope, $http, apiService, $stateParams) {
   window.apps = this;
   let self = this;
   this.list = [];
+  $scope.serachForm = "iphone";
   self.productData = [];
   self.topProductData = [];
+  var name = $stateParams.name;
+  $scope.name = name;
+  // console.log(name);
   
 
   angular.element(document).ready(function() {
@@ -14,10 +18,10 @@ app.controller('searchCtrl', function($scope, $http, apiService) {
       }
     });
   });
-  apiService.getProduct()
+  apiService.searchProducts(name)
     .then(function(product) {
       //get last 10 product
-      for(i=0; i<10; i++){
+      for(i=0; i<product.data.length; i++){
         self.productData.push(product.data[i]);
         $scope.data = self.productData;
       }
@@ -53,17 +57,4 @@ app.controller('searchCtrl', function($scope, $http, apiService) {
       }
 
     });
-
-apiService.getTopProduct()
-  .then(function(product) {
-    //get last 10 product
-    for(i=0; i<10; i++){
-      if(product.data[i].qty_bought > 0){
-        self.topProductData.push(product.data[i]);
-      }
-      $scope.topData = self.topProductData;
-    }
-
-  });
-
 });

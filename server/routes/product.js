@@ -37,7 +37,7 @@ router.get('/top', (req, res) => {
 });
 
 router.get('/search/:name', (req, res) => {
-    var name = req.param.name;
+    var name = req.params.name;
     products.searchProduct(name,(err, products) => {
         if (err) {
             res.status(555).send(result.fail);
