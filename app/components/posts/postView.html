@@ -45,6 +45,12 @@
                                 <div class="view-product-face news-coment">
                                     <h2><span>Bình luận</span></h2></div>
                                 <div class="discussion-block left" id="content_discussion">
+                                    <table id="cmt-table" class="table table-bordered table-striped" style="border: none">
+                                        <tr ng-repeat="cmt in data.comment">
+                                            <td style="width: 20%;">{{cmt.name}}</td>
+                                            <td style="width: 80%;">{{cmt.cmt_content}}</td>
+                                        </tr>
+                                    </table>
 
                                     <!--<div class="ty-discussion-post__buttons buttons-container">
 
@@ -53,37 +59,13 @@
             </div>-->
 
                                     <div class="ty-discussion-post-popup" id="new_post_dialog_6655">
-                                        <form action="https://www.duchuymobile.com" method="post" class="cm-ajax cm-ajax-full-render posts-form" name="add_post_form" id="add_post_form_6655">
-                                            <input type="hidden" name="result_ids" value="average_rating*,content_discussion">
-                                            <input type="hidden" name="post_data[thread_id]" value="10252" />
-                                            <input type="hidden" name="redirect_url" value="index.php?dispatch=news.view&amp;news_id=6655" />
-                                            <input type="hidden" name="selected_section" value="" />
+                                        <form action="" method="post" class="cm-ajax cm-ajax-full-render posts-form" name="add_post_form" id="add_post_form_6655">
                                             <div id="new_post_6655">
                                                 <div class="ty-control-group">
                                                     <label for="dsc_message_6655" class="hidden cm-required">Tin nhắn của bạn</label>
-                                                    <textarea id="dsc_message_6655" name="post_data[message]" class="ty-input-textarea ty-input-text-post show_post " rows="3" placeholder="Mời bạn thảo luận về tin này" style="width:99%;padding: 10px;"></textarea>
-                                                </div>
-                                                <div class="hidden_post">
-                                                    <div class="clearfix">
-                                                        <div class="post_left">
-                                                            <div class="ty-control-group">
-                                                                <label for="dsc_name_6655" class="hidden cm-required">Tên bạn</label>
-                                                                <input type="text" id="dsc_name_6655" name="post_data[name]" value="" size="20" class="ty-input-text-medium cm-hint" title="Họ tên (bắt buộc)" />
-                                                            </div>
-                                                            <div class="ty-control-group">
-                                                                <label for="dsc_phone" class="hidden">Điện thoại</label>
-                                                                <input id="dsc_phone" type="text" name="post_data[email]" value="" size="20" title="Số điện thoại" class="cm-hint ty-input-text-medium cm-phone">
-                                                            </div>
-                                                            <div class="buttons-container-submit">
-
-                                                                <input class="ty-post-coment" type="submit" name="dispatch[discussion.add]" value="Gửi" />
-
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-
-                                                    <!--new_post_6655-->
+                                                    <textarea id="dsc_message_6655" name="content" class="ty-input-textarea ty-input-text-post show_post " rows="3" placeholder="Mời bạn thảo luận về tin này" style="width:90%;padding: 10px;"></textarea>
+                                                    <button type="button" class="btn btn-primary" ng-click="addComment()" style="margin-top: -27px;">Gửi</button>
+                                                </div>                   
                                                 </div>
                                             </div>
                                         </form>

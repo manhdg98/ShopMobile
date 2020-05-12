@@ -248,6 +248,18 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             access: false
 
         })
+        .state('admin.revenue', {
+            url: "/revenue",
+            views: {
+                "": {
+                    templateUrl: 'app/admin/admin-revenue/admin-revenueView.html',
+                    controller: 'Admin-revenueCtrl',
+                    controllerAs:'$ctrl'
+                }
+            },
+            access: false
+
+        })
         .state('error', {
             url: "/error",
             templateUrl: 'assests/html/error.html'

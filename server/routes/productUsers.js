@@ -25,6 +25,7 @@ router.get('/', (req, res) => {
     });
 });
 
+
 router.get('/:id', (req, res) => {
     var id = req.params.id;
     var _oid = id.split(':');
@@ -37,6 +38,30 @@ router.get('/:id', (req, res) => {
         }
         res.json(product);
     });
+});
+
+router.get('/month/:m', (req, res) => {
+    var m = Number(req.params.m);
+    var query = [
+        {$project: 
+            {
+                idUser: '$idUser',
+                username: '$username',
+                product: '$product',
+                create_date: '$create_date',
+                month: {$month: '$create_date'},
+            }
+        },
+        {$match: {month: m}}
+    ]
+
+    productUsers.aggregate(query, function(err, product) {
+        if (err) {
+            throw err;
+        }
+        res.json(product);
+    });
+
 });
 
 

@@ -35,6 +35,12 @@ app.controller('Admin-productUserCtrl', function($scope, $http, shareData, apiSe
                                 productUser.statusP = "Hủy";
                                 break;
                         };
+
+                        productUser.total = 0;
+
+                        productUser.product.forEach(function(prod){
+                            productUser.total += Number(prod.amount) * Number(prod.price); 
+                        })
                     })
                 })
                 .catch(function(data) {

@@ -38,7 +38,7 @@ router.get('/display', (req, res) => {
 
 router.post('/', (req, res) => {
     console.log("---------------------");
-    console.log(req);
+    // console.log(req);
     console.log(req.body);
     
     var post = req.body;
@@ -78,10 +78,7 @@ router.put('/:id', (req, res) => {
 
 router.put('/comment/:id', (req, res) => {
     var id = req.params.id;
-    console.log(id,"id");
-    console.log(req.body);
-    var comment = req.body
-    console.log(comment);
+    var comment = req.body;
     posts.addComment(id, comment,(err, post) => {
         if (err) {
             throw err;
