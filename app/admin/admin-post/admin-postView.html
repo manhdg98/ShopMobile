@@ -53,7 +53,10 @@
                     <td>{{post.content}}</td>
                     <td><img width="120px" src="{{post.img}}" alt=""></td>
                     <td>{{post.statusPost}}</td>
-                    <td>{{post.comment.userId}}: {{post.comment.cmt_content}}</td>
+                    <td>
+                        <p ng-repeat="cmt in post.comment" style="color: black; margin-bottom: 0px;">
+                            <span><b>{{cmt.name}}</b></span>: {{cmt.cmt_content}}</p>
+                    </td>   
                     <td><a href="" ng-click="$ctrl.onEdit(post)"><span class="fa fa-edit">
                        <span>Edit</span></span></a>
                     </td>
