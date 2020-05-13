@@ -1,0 +1,95 @@
+<div class="row">
+    <div class="col-sm-2">
+        <button class="btn btn-success" ng-click="$ctrl.onExportExcel()">Export Excel</button>
+    </div>
+    <div class="col-sm-2">
+        <button class="btn btn-info" ng-click="$ctrl.onExportDoc()">Export Word</button>
+    </div>
+</div>
+<div>
+    <div class="panel-group">
+        <table id="revenueCtrl" class="table table-bordered table-striped" export-table>
+            <colgroup>
+                <col width="5%" />
+                <col width="10%" />
+                <col width="15%" />
+            </colgroup>
+
+            <thead>
+                <tr style="text-align: center;">
+                    <th>Month</th>
+                    <th>Total Product</th>
+                    <th>Total Revenue (đ)</th>
+            </thead>
+            <tbodyh>
+                <tr class="bg-success text-center">
+                    <th>1</th>
+                    <th>{{productUsersMonth1.totalproduct}}</th>
+                    <th>{{productUsersMonth1.totalRevenue}}000</th>
+                </tr>
+                <tr class="bg-success text-center">
+                    <th>2</th>
+                    <th>{{productUsersMonth2.totalproduct}}</th>
+                    <th>{{productUsersMonth2.totalRevenue}}000</th>
+                </tr>
+                <tr class="bg-success text-center">
+                    <th>3</th>
+                    <th>{{productUsersMonth3.totalproduct}}</th>
+                    <th>{{productUsersMonth3.totalRevenue}}000</th>
+                </tr>
+                <tr class="bg-success text-center">
+                    <th>4</th>
+                    <th>{{productUsersMonth4.totalproduct}}</th>
+                    <th>{{productUsersMonth4.totalRevenue}}000</th>
+                </tr>
+                <tr class="bg-success text-center">
+                    <th>5</th>
+                    <th>{{productUsersMonth5.totalproduct}}</th>
+                    <th>{{productUsersMonth5.totalRevenue}}000</th>
+                </tr>
+                <tr class="bg-success text-center">
+                    <th>6</th>
+                    <th>{{productUsersMonth6.totalproduct}}</th>
+                    <th>{{productUsersMonth6.totalRevenue}}000</th>
+                </tr>
+                <tr class="bg-success text-center">
+                    <th>7</th>
+                    <th>{{productUsersMonth7.totalproduct}}</th>
+                    <th>{{productUsersMonth7.totalRevenue}}000</th>
+                </tr>
+                <tr class="bg-success text-center">
+                    <th>8</th>
+                    <th>{{productUsersMonth8.totalproduct}}</th>
+                    <th>{{productUsersMonth8.totalRevenue}}000</th>
+                </tr>
+                <tr class="bg-success text-center">
+                    <th>9</th>
+                    <th>{{productUsersMonth9.totalproduct}}</th>
+                    <th>{{productUsersMonth9.totalRevenue}}000</th>
+                </tr>
+                <tr class="bg-success text-center">
+                    <th>10</th>
+                    <th>{{productUsersMonth10.totalproduct}}</th>
+                    <th>{{productUsersMonth10.totalRevenue}}000</th>
+                </tr>
+                <tr class="bg-success text-center">
+                    <th>11</th>
+                    <th>{{productUsersMonth11.totalproduct}}</th>
+                    <th>{{productUsersMonth11.totalRevenue}}000</th>
+                </tr>
+                <tr class="bg-success text-center">
+                    <th>12</th>
+                    <th>{{productUsersMonth12.totalproduct}}</th>
+                    <th>{{productUsersMonth12.totalRevenue}}000</th>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr style="text-align: center;">
+                    <th>Number</th>
+                    <th>Total Product</th>
+                    <th>Total Revenue (đ)</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

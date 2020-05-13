@@ -85,6 +85,10 @@ input[type="submit"],#PPMiniCart .minicart-submit,.w3ls_vegetables ul li a,input
 	-o-transition: .5s ease-in;
 	-ms-transition: .5s ease-in;
 }
+
+.cmt-table td{
+	border: none !important;
+}
 .agileits_header{
 	background:#212121;
 }
@@ -4764,3 +4768,4 @@ input.checkbox:checked:after {
 		font-size: 13px;
 	}
 }
+

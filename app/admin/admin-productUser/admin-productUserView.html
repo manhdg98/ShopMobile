@@ -36,7 +36,10 @@
             </thead>
             <tbody ng-repeat="user in $ctrl.productUsers">
                 <tr class="bg-success text-center">
-                    <td colspan="7">Name: <strong style="color: slateblue;"> {{user.name}}</strong> Email:<strong style="color: slateblue;"> {{user.username}} </strong>, --- Phone number: <strong style="color: slateblue;"> {{user.phone}}</strong> --- Address:<strong style="color: slateblue;"> {{user.address}}</strong> --- Create Date: <strong style="color: slateblue;"> {{user.create_date | date:'dd/MM/yyyy'}} </strong></td>
+                    <td colspan="6">Name: <strong style="color: slateblue;"> {{user.name}}</strong> Email:<strong style="color: slateblue;"> {{user.username}} </strong>, --- Phone number: <strong style="color: slateblue;"> {{user.phone}}</strong> --- Address:<strong style="color: slateblue;"> {{user.address}}</strong> --- Create Date: <strong style="color: slateblue;"> {{user.create_date | date:'dd/MM/yyyy'}} </strong></td>
+                    <td> 
+                        {{user.total}}000đ
+                    </td>
                     <td> <a href="" ng-click="$ctrl.onEdit(user)">
                         <span class="fa fa-trash"> <span>Edit</span></span></a>
                     </td>

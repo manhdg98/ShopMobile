@@ -9,10 +9,10 @@ var postspData = new Schema({
     img:{
         type: String
     },
-    comment: {
-        userId: { type: Schema.Types.ObjectId, ref: 'user' },
+    comment: [{
+        name: String,
         cmt_content: String
-    },
+    }],
     status: Number,
     created_at: {
         type: Date,
@@ -68,7 +68,7 @@ module.exports.addComment = (id, comment, callback) => {
         cmt_content: comment.cmt_content
     }
     
-    posts.update(query,{$push: update}, callback);
+    posts.update(query,{$push:{ comment: update }}, callback);
 }
 
 module.exports.removePost = (id, callback) => {

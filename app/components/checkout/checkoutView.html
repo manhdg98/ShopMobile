@@ -34,8 +34,12 @@
                 </thead>
                 <tbody ng-repeat="order in $ctrl.productUsers">
                     <tr class="bg-success text-center">
-                        <td colspan="8">Name: <strong style="color: slateblue;"> {{$ctrl.user.name}}</strong> Email:<strong style="color: slateblue;"> {{$ctrl.user.username}} </strong>, --- Phone number: <strong style="color: slateblue;"> {{$ctrl.user.phone}}</strong> --- Address:<strong style="color: slateblue;"> {{$ctrl.user.address}}</strong> --- Create Date: <strong style="color: slateblue;"> {{order.create_date | date:'dd/MM/yyyy'}} </strong></td>
+                        <td colspan="6">Name: <strong style="color: slateblue;"> {{$ctrl.user.name}}</strong> Email:<strong style="color: slateblue;"> {{$ctrl.user.username}} </strong>, --- Phone number: <strong style="color: slateblue;"> {{$ctrl.user.phone}}</strong> --- Address:<strong style="color: slateblue;"> {{$ctrl.user.address}}</strong> --- Create Date: <strong style="color: slateblue;"> {{order.create_date | date:'dd/MM/yyyy'}} </strong></td>
                         </td>
+                        <td> 
+                            {{order.total}}000đ
+                        </td>
+                        <td></td>
                     </tr>
                     <tr ng-repeat="product in order.product">
                         <td>{{$index +1}}</td>

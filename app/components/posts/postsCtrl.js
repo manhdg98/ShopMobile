@@ -3,7 +3,7 @@ app.controller('postsCtrl', function($scope, $http, apiService) {
   let self = this;
   this.list = [];
   self.page = 1;
-  
+  self.comment = "";
 
   angular.element(document).ready(function() {
     $('.flexslider').flexslider({
@@ -18,4 +18,8 @@ app.controller('postsCtrl', function($scope, $http, apiService) {
       $scope.data = post.data;
       // console.log('post', post.data);
     });
+
+  $scope.addComment = function(comment){
+    
+  }
 });

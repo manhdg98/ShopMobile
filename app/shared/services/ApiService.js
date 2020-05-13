@@ -45,6 +45,12 @@ function ApiService($http, $window) {
     var addPost = function(post) {
         return $http.post('/api/posts', post);
     }
+    var addPost = function(post) {
+        return $http.post('/api/posts', post);
+    }
+    var addComment = function(id, comment) {
+        return $http.put('/api/posts/comment/'+id, comment);
+    }
     var editPost = function(post) {
         var id = post._id;
         return $http.put('/api/posts/:'+id, post);
@@ -114,6 +120,11 @@ function ApiService($http, $window) {
     var getproductUsers = function() {
         return $http.get('/api/productUsers', {});
     }
+
+    var getOrderByMonth = function(m) {
+        return $http.get('/api/productUsers/month/'+m, {});
+    }
+
     var addProductUser = function(product) {
         return $http.post('/api/productUsers/',product);
     }
@@ -171,6 +182,7 @@ function ApiService($http, $window) {
         product: product,
         addProduct:addProduct,
         addPost: addPost,
+        addComment: addComment,
         addCategory: addCategory,
         defaultImage: defaultImage,
 
@@ -181,6 +193,7 @@ function ApiService($http, $window) {
         getDisplayPost: getDisplayPost,
         getCategory: getCategory,
         getproductUsers:getproductUsers,
+        getOrderByMonth: getOrderByMonth,
         addProductUser:addProductUser,
 
         getCategoryById: getCategoryById,

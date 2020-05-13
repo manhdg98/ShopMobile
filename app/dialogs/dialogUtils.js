@@ -97,7 +97,7 @@ function DialogUtils(ModalService, $http, $timeout, apiService, shareData, $loca
                             }
                             else{
                                 self.data = [];
-                                apiService.listProducts = [];
+                                apiService.listProducts;
                                 $.notify({
                                     icon: 'fa fa-check',
                                     message: `Số lượng hàng trong kho của ${response.data.item.name} không đủ !!!!`

@@ -36,6 +36,11 @@ module.exports.getProduct = (callback, limit) => {
     productUsers.find(callback).limit(limit);
 }
 
+// module.exports.findByMonth = (m, err, result) => {
+//     productUsers
+//       console.log(callback);
+// }
+
 // module.exports.getProductById = (id, callback) => {
 //
 //     productUsers.find({'idUser': ObjectId("id")}, callback);

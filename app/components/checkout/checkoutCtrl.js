@@ -26,6 +26,12 @@ app.controller('CheckoutCtrl', function($scope, $http, apiService, AuthService, 
                                     productUser.statusP = "Hủy";
                                     break;
                             };
+
+                            productUser.total = 0;
+
+                            productUser.product.forEach(function(prod){
+                                productUser.total += Number(prod.amount) * Number(prod.price); 
+                            })
                         })
                         console.log(self.productUsers, "self.productUsers")
                     })
