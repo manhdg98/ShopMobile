@@ -311,39 +311,66 @@ function DialogUtils(ModalService, $http, $timeout, apiService, shareData, $loca
             })
             self.productModel = shareData.getData() ? shareData.getData() : {};
             this.addProduct = function() {
-                if (self.image) {
-                    console.log(self.image, "self.avatar");
+                if (self.image || self.productModel.img) {
+                    // console.log(self.image, "self.avatar");
                     var formData = new FormData();
-                    formData.append('file', self.image);
-                    uploadService.uploadImage(formData)
-                        .then((rs) => {
-                            self.productModel.img = rs.data.content;
-                            console.log(self.productModel.img, "self.productModel.img")
-                            var onSave = undefined;
-                            if (self.productModel._id == undefined || self.productModel._id == 0){
-                                onSave = apiService.addProduct;
-                            }
-                            else {
-                                onSave = apiService.editProduct;
-                            }
-                            onSave(self.productModel).then(function(data) {
-                                    self.productModel = {};
-                                    $.notify({
-                                        icon: 'fa fa-check',
-                                        message: 'Update success !!!!'
-                                    }, {
-                                        delay: 2,
-                                        timer: 200
-                                    });
-                                    onloadListProduct();
-                                    $location.path('/admin/list-product');
-                                })
-                                .catch(function(data) {
-                                    console.log(data, "addProduct")
-                                })
-                        }).catch((err) => {
-                            console.log("upload avatar fail", err);
-                        })
+                    if(self.image){
+                        formData.append('file', self.image);
+                        uploadService.uploadImage(formData)
+                            .then((rs) => {
+                                self.productModel.img = rs.data.content;
+                                // console.log(self.productModel.img, "self.productModel.img")
+                                var onSave = undefined;
+                                if (self.productModel._id == undefined || self.productModel._id == 0){
+                                    onSave = apiService.addProduct;
+                                }
+                                else {
+                                    onSave = apiService.editProduct;
+                                }
+                                onSave(self.productModel).then(function(data) {
+                                        self.productModel = {};
+                                        $.notify({
+                                            icon: 'fa fa-check',
+                                            message: 'Update success !!!!'
+                                        }, {
+                                            delay: 2,
+                                            timer: 200
+                                        });
+                                        onloadListProduct();
+                                        $location.path('/admin/list-product');
+                                    })
+                                    .catch(function(data) {
+                                        console.log(data, "addProduct")
+                                    })
+                            }).catch((err) => {
+                                console.log("upload avatar fail", err);
+                            })
+                    }
+                    else{
+                        var onSave = undefined;
+                        if (self.productModel._id == undefined || self.productModel._id == 0){
+                            onSave = apiService.addProduct;
+                        }
+                        else {
+                            onSave = apiService.editProduct;
+                        }
+                        onSave(self.productModel).then(function(data) {
+                                self.productModel = {};
+                                $.notify({
+                                    icon: 'fa fa-check',
+                                    message: 'Update success !!!!'
+                                }, {
+                                    delay: 2,
+                                    timer: 200
+                                });
+                                onloadListProduct();
+                                $location.path('/admin/list-product');
+                            })
+                            .catch(function(data) {
+                                console.log(data, "addProduct")
+                            })
+                    }
+                    
                 } else {
                     self.productModel.img = 'uploads/imgs/1582873184295_iphoneX.jpg';
                     var onSave = undefined;

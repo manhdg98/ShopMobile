@@ -16,8 +16,8 @@ app.controller('Admin-prodctCtrl', function($scope, $http, shareData, apiService
             .then(function(product) {
                 self.productModels = product.data;
                 self.productModels.forEach(function (product) {
-                    if(Array.isArray(product.category_id) && product.category_id.length){
-                        apiService.getCategoryById(product.category_id[0]).then(function(category){
+                    if(product.category_id){
+                        apiService.getCategoryById(product.category_id).then(function(category){
                             product.category = category.data;
                         })
                     }
