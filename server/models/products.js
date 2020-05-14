@@ -7,7 +7,7 @@ var productspData = new Schema({
     name: String,
     price: Number,
     sale: Number,
-    category_id: [{ type: Schema.Types.ObjectId, ref: 'Category' }],
+    category_id: { type: Schema.Types.ObjectId, ref: 'Category' },
     content: String,
     qty: Number,
     qty_bought: {
