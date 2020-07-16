@@ -13,15 +13,6 @@ var debug = require('debug')('passport-mongo');
 var formidable = require('formidable');
 var http = require('http').Server(app);
 // var io = require('socket.io')(http);
-<<<<<<< HEAD
-var cors = require('cors');
-app.use(cors());
-
-app.get('/chat', function(req, res){
-	res.sendFile(__dirname + '/index1.html');
-});
-=======
->>>>>>> f8bcb66586153ea89fe9ed5be6f3111e1f1eb565
 
 mongoose.connect('mongodb://localhost/shops');
 // mongoose.connect('mongodb://meanstack:meanstack@ds014648.mlab.com:14648/meanstack');
@@ -93,13 +84,8 @@ app.set('port', process.env.PORT || 3000);
 var server = app.listen(app.get('port'), function() {
   debug('Express server listening on port ' + server.address().port);
 });
-<<<<<<< HEAD
-
-var io = require('socket.io').listen(server);
-=======
 var io = require('socket.io').listen(server);
 
->>>>>>> f8bcb66586153ea89fe9ed5be6f3111e1f1eb565
 io.on('connection', function(socket){
 	var user_id = Math.floor((Math.random() * 10000) + 1);
 	socket.emit('my id',user_id);					// Emits the user id 
@@ -125,8 +111,5 @@ io.on('connection', function(socket){
   });
 
 });
-<<<<<<< HEAD
-=======
 
->>>>>>> f8bcb66586153ea89fe9ed5be6f3111e1f1eb565
 module.exports = app;

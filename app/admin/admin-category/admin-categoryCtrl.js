@@ -2,7 +2,7 @@ app.controller('Admin-categoryCtrl', function($scope, $http, shareData, apiServi
     let self = this;
     self.categoryModels = [];
     this.onExportPDF = function(){
-        $scope.$broadcast('export-pdf', [6,7]);
+        $scope.$broadcast('export-pdf', [17]);
     }
     this.onExportDoc = function(){
         $scope.$broadcast('export-doc', [6,7]);

@@ -89,7 +89,7 @@ function DialogUtils(ModalService, $http, $timeout, apiService, shareData, $loca
                                     message: 'Order success !!!!'
                                 }, {
                                     delay: 2,
-                                    timer: 200
+                                    timer: 2000
                                 });
                                 $timeout(function() {
                                     $location.path('/checkout');
@@ -103,7 +103,7 @@ function DialogUtils(ModalService, $http, $timeout, apiService, shareData, $loca
                                     message: `Số lượng hàng trong kho của ${response.data.item.name} không đủ !!!!`
                                 }, {
                                     delay: 2,
-                                    timer: 1000
+                                    timer: 2000
                                 });
                             }
                             
@@ -275,7 +275,7 @@ function DialogUtils(ModalService, $http, $timeout, apiService, shareData, $loca
                         message: 'Update success !!!'
                     }, {
                         delay: 2,
-                        timer: 200
+                        timer: 1000
                     });
                 })
                 .catch(function(data) {

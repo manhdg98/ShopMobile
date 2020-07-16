@@ -43,35 +43,98 @@
                 <div class="span6 " >
                    <div class=" info_footer_right">
                       <div class="item_footer_right">
-                         <p><strong>Showroom</strong>: <span style="color: #D50F0E; ">đường ABC, quận XYZ</span></p>
-                         <div class="callfree">Tổng đài hỗ trợ <span>(tư vấn miễn phí): 0123456789</span></div>
+                         <p><strong>Showroom</strong>: <span style="color: #D50F0E; ">187A Ba Tháng Hai, Phường 11, Quận 10, Hồ Chí Minh 700000, Việt Nam</span></p>
+                         <div class="callfree">Tổng đài hỗ trợ <span>(tư vấn miễn phí): 0359741555</span></div>
                          
                       </div>
                    </div>
                 </div>
                 <div class="span5 my-account-grid" >
                    <div class=" no-div">
-                      <div id="gotop"><i class="icon-up-open"></i></a>
-                      </div>
-                      <button id="chat" type="button" class="btn btn-success">Chat</button>
+                      <!-- <div id="gotop"><i class="icon-up-open"></i></a>
+                      </div> -->
+                      
                       <div class="social-follow">
-                         <div class=" pagepay">
-                            <a href="/huong-dan-mua-hang-chi-tiet-san-pham" target="_blank" title="Tiền mặt, Chuyển khoản, Thẻ ATM nội địa, Thẻ VISA, Thẻ Master">
-                               <!--<i class="icon-tienmat"></i> <i class="icon-chuyenkhoan"></i>--> <i class="icon-atm"></i> <i class="icon-visa"></i> <i class="icon-master"></i>
-                            </a>
-                         </div>
-                         <a title="Facebook" aria-hidden="true" target="_blank" class="" href="#">
-                         <i class="uni-facebook facebook"></i> Fanpage
-                         </a>
-                         <a title="Youtube" aria-hidden="true" target="_blank" class="" href="#">
-                         <i class="uni-youtube twitter"></i> Youtube
-                         </a>
-                      </div>
+                        <div class=" pagepay">
+                           <a href="/huong-dan-mua-hang-chi-tiet-san-pham" target="_blank" title="Tiền mặt, Chuyển khoản, Thẻ ATM nội địa, Thẻ VISA, Thẻ Master">
+                              <!--<i class="icon-tienmat"></i> <i class="icon-chuyenkhoan"></i>--> <i class="icon-atm"></i> <i class="icon-visa"></i> <i class="icon-master"></i>
+                           </a>
+                        </div>
+                        <a title="Facebook" aria-hidden="true" target="_blank" class="" href="#">
+                        <i class="uni-facebook facebook"></i> Fanpage
+                        </a>
+                        <a title="Youtube" aria-hidden="true" target="_blank" class="" href="#">
+                        <i class="uni-youtube twitter"></i> Youtube
+                        </a>
+                     </div>
                    </div>
                 </div>
              </div>
           </div>
     </div>
     <!--tygh_main_container-->
+   
  </div>
+ 
+ <button id="chat" type="button" class="glow-on-hover" style="position: fixed; bottom:10px; right: 10px;">Chat Group</button>
+ <style>
+    .glow-on-hover {
+    width: 220px;
+    height: 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+}
 
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover:active {
+    color: #000
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+ </style>

@@ -29,12 +29,6 @@ var formidable = require('formidable');
 var http = require('http').Server(app); // var io = require('socket.io')(http);
 
 
-var cors = require('cors');
-
-app.use(cors());
-app.get('/chat', function (req, res) {
-  res.sendFile(__dirname + '/index1.html');
-});
 mongoose.connect('mongodb://localhost/shops'); // mongoose.connect('mongodb://meanstack:meanstack@ds014648.mlab.com:14648/meanstack');
 
 var db = mongoose.connection;
@@ -66,7 +60,10 @@ app.use(require('express-session')({
   resave: false,
   saveUninitialized: false
 }));
-app.use(express["static"](path.join(__dirname, '../'))); // configure passport
+app.use(express["static"](path.join(__dirname, '../')));
+app.get('/chat', function (req, res) {
+  res.sendFile(__dirname + '/index.html');
+}); // configure passport
 
 app.use(passport.initialize());
 app.use(passport.session());
