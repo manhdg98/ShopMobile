@@ -39,7 +39,7 @@
   "author": "linh",
   "license": "ISC",
   "devDependencies": {
-    "formidable": "^1.2.1",
+    "formidable": "^1.2.2",
     "jsonwebtoken": "^8.2.1"
   }
 }
